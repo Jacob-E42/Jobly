@@ -1,0 +1,18 @@
+nav {
+	background-color: whitesmoke;
+	height: 3rem;
+	vertical-align: middle;
+}
+
+a {
+	text-align: right;
+	color: black;
+	font-size: 1rem;
+	text-decoration: none;
+	margin: 5px;
+}
+
+.home {
+	text-align: left;
+	font-weight: bold;
+}

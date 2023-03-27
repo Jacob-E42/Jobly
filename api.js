@@ -1,5 +1,4 @@
-import React from "react";
-import axios from "axios";
+const axios = require("axios");
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
@@ -38,11 +37,7 @@ class JoblyApi {
 	/** Get details on a company by handle. */
 
 	static async register(username, password, firstName, lastName, email) {
-		let res = await this.request(
-			`auth/register`,
-			{ user: { username, password, firstName, lastName, email } },
-			"post"
-		);
+		let res = await this.request(`auth/register`, { username, password, firstName, lastName, email }, "post");
 		return res.token;
 	}
 
@@ -119,4 +114,4 @@ JoblyApi.token =
 	"SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
 	"FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
-export default JoblyApi;
+module.exports = JoblyApi;

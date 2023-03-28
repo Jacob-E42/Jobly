@@ -14,7 +14,7 @@ const Nav = () => {
 			<NavLink to="/jobs">Jobs</NavLink>
 			<NavLink to="/login">Login</NavLink>
 			<NavLink to="/signup">Sign Up</NavLink>
-			<NavLink inactive>Log Out</NavLink>
+			<NavLink>Log Out</NavLink>
 		</nav>
 	);
 };

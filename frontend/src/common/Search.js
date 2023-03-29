@@ -6,7 +6,7 @@ const Search = ({ allowedTerms }) => {
 	const [form, handleChange] = useForm({ searchTerm: "" });
 	const handleSubmit = useCallback(e => {
 		e.preventDefault();
-	});
+	}, []);
 	return (
 		<Form onSubmit={handleSubmit}>
 			<Input

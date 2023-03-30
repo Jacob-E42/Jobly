@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../common/LoadingSpinner";
 import JoblyApi from "../api/api";
-import JobList from "../jobs/JobList";
+import JobList from "../jobs/JobCardList";
 
 const CompanyPage = () => {
 	const { handle } = useParams();

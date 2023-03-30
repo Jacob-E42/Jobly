@@ -1,12 +1,26 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { Form, Input, Button } from "reactstrap";
-import useForm from "../hooks/useForm";
 
-const Search = ({ allowedTerms }) => {
-	const [form, handleChange] = useForm({ searchTerm: "" });
-	const handleSubmit = useCallback(e => {
-		e.preventDefault();
-	}, []);
+const Search = ({ searchFor }) => {
+	const [searchTerm, setSearchTerm] = useState(null);
+
+	const handleChange = useCallback(
+		e => {
+			e.preventDefault();
+			setSearchTerm(e.target.value);
+		},
+		[searchTerm]
+	);
+
+	const handleSubmit = useCallback(
+		e => {
+			e.preventDefault();
+			searchFor(searchTerm.trim() || undefined);
+			setSearchTerm(searchTerm.trim());
+		},
+		[searchFor, setSearchTerm, searchTerm]
+	);
+
 	return (
 		<Form onSubmit={handleSubmit}>
 			<Input
@@ -14,7 +28,7 @@ const Search = ({ allowedTerms }) => {
 				id="searchTerm"
 				name="searchTerm"
 				type="text"
-				value={form.searchTerm}
+				value={searchTerm}
 				onChange={handleChange}
 			/>
 			<Button type="submit">Submit</Button>

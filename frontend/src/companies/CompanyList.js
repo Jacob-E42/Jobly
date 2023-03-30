@@ -10,22 +10,23 @@ const CompanyList = () => {
 	const [companies, setCompanies] = useState([]);
 
 	useEffect(() => {
-		async function getCompanies() {
-			let companies = await JoblyApi.getAllCompanies();
-			console.log(companies.length);
-			setCompanies(companies);
-			console.log("companies", companies);
-		}
-		getCompanies();
+		search();
 	}, []);
+
+	const search = async name => {
+		let companies = await JoblyApi.getCompanies(name);
+		setCompanies(companies);
+	};
 
 	return (
 		<div className="CompanyList">
-			<Search allowedTerms={["minEmployees", "maxEmployees", "nameLike"]} />
+			<Search searchFor={search} />
 			<div>
 				{companies.map(c => {
 					return (
-						<Link to={`/companies/${c.handle}`}>
+						<Link
+							key={c.handle}
+							to={`/companies/${c.handle}`}>
 							<CompanyCard
 								key={c.handle}
 								name={c.name}

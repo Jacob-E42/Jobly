@@ -10,6 +10,8 @@ import Profile from "../profiles/Profile";
 import Nav from "./Nav";
 
 const Router = () => {
+	// const [currentCompany, setCurrentCompany] = useState(null);
+
 	return (
 		<BrowserRouter>
 			<Nav />

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import UserContext from "../UserContext";
 
 const LoginForm = () => {
 	const [form, setForm] = useState({
@@ -16,6 +17,7 @@ const LoginForm = () => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
+		const login = useContext(UserContext);
 		// handle form submission logic here
 	};
 

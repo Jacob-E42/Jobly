@@ -1,12 +1,16 @@
 import React, { useContext, useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import UserContext from "../UserContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
 	const [form, setForm] = useState({
 		username: "",
 		password: ""
 	});
+
+	const { login } = useContext(UserContext);
+	const navigate = useNavigate();
 
 	const handleChange = event => {
 		setForm({
@@ -15,10 +19,14 @@ const LoginForm = () => {
 		});
 	};
 
-	const handleSubmit = event => {
+	const handleSubmit = async event => {
 		event.preventDefault();
-		const login = useContext(UserContext);
-		// handle form submission logic here
+		try {
+			await login(form.username, form.password);
+			navigate("/login");
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (

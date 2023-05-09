@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import UserProvider from "./UserProvider";
-import { UserContext } from "./UserContext";
+import UserContext from "./UserContext";
 import JoblyApi from "./api/api";
 import Router from "./routes/Router";
 
@@ -13,14 +12,19 @@ function App() {
 		const loginTokin = JoblyApi.login(username, password);
 
 		if (loginTokin) {
-			setTokin(loginTokin);
+			setTokin(tokin => loginTokin);
 		}
 
 		setCurrentUser({ username, password });
 	};
 
+	const logout = () => {
+		setTokin(null);
+		setCurrentUser(null);
+	};
+
 	return (
-		<UserContext.Provider value={{ currentUser, setCurrentUser, login }}>
+		<UserContext.Provider value={{ currentUser, login, logout }}>
 			<div className="App">
 				<Router />
 			</div>

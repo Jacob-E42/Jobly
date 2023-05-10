@@ -3,7 +3,7 @@ import "./App.css";
 import UserContext from "./UserContext";
 import JoblyApi from "./api/api";
 import Router from "./routes/Router";
-import jwt from "jsonwebtoken";
+import jwtDecode from "jwt-decode";
 
 function App() {
 	const [token, setToken] = useState(null);
@@ -16,10 +16,10 @@ function App() {
 			async function getCurrentUser() {
 				if (token) {
 					try {
-						let { username } = jwt.decode(token);
+						const { username } = jwtDecode(token);
 						// put the token on the Api class so it can use it to call the API.
 						JoblyApi.token = token;
-						let currentUser = await JoblyApi.getCurrentUser(username);
+						const currentUser = await JoblyApi.getCurrentUser(username);
 						setCurrentUser(currentUser);
 					} catch (err) {
 						console.error("App loadUserInfo: problem loading", err);

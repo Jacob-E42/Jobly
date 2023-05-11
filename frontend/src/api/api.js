@@ -34,23 +34,25 @@ class JoblyApi {
 
 	// Individual API routes
 
-	/** Get details on a company by handle. */
-
+	// Register a new user with the provided username, password, first name, last name, and email
 	static async register(username, password, firstName, lastName, email) {
 		let res = await this.request(`auth/register`, { username, password, firstName, lastName, email }, "post");
 		return res.token;
 	}
 
+	// Log in a user with the provided username and password
 	static async login(username, password) {
 		let res = await this.request(`auth/token`, { username, password }, "post");
 		return res.token;
 	}
 
+	// Get the current user's information based on the provided username
 	static async getCurrentUser(username) {
 		let res = await this.request(`users/${username}`);
 		return res.user;
 	}
 
+	// Create a new company with the provided handle, name, description, number of employees, and logo URL
 	static async createCompany(handle, name, description, numEmployees, logoUrl) {
 		let res = await this.request(
 			`companies/`,
@@ -60,57 +62,65 @@ class JoblyApi {
 		return res.company;
 	}
 
+	// Get information about a specific company based on the provided handle
 	static async getCompany(handle) {
 		let res = await this.request(`companies/${handle}`);
 		return res.company;
 	}
 
+	// Get a list of companies with names matching the provided value
 	static async getCompanies(name) {
 		let res = await this.request(`companies`, { name });
 		return res.companies;
 	}
 
+	// Update a company with the provided handle using the provided fields
 	static async updateCompany(handle, fields) {
 		let res = await this.request(`companies/${handle}`, fields, "patch");
 		return res.company;
 	}
 
+	// Delete a company with the provided handle
 	static async deleteCompany(handle) {
 		let res = await this.request(`companies/${handle}`, "delete");
 		return res;
 	}
 
+	// Create a new job with the provided title, salary, equity, and company handle
 	static async createJob(title, salary, equity, companyHandle) {
 		let res = await this.request(`jobs/`, { job: { title, salary, equity, companyHandle } }, "post");
 		return res.job;
 	}
 
+	// Get a list of jobs with titles matching the provided value
 	static async getJobs(title) {
 		let res = await this.request(`jobs`, { title });
 		return res.jobs;
 	}
 
+	// Get information about a specific job based on the provided ID
 	static async getJob(id) {
 		let res = await this.request(`jobs/${id}`);
 		return res.job;
 	}
 
+	// Update a job with the provided ID using the provided fields
 	static async updateJob(id, fields) {
 		let res = await this.request(`jobs/${id}`, fields, "patch");
 		return res.job;
 	}
 
+	// Delete a job with the provided ID
 	static async deleteJob(id) {
 		let res = await this.request(`jobs/${id}`, "delete");
 		return res;
 	}
 
+	// Apply to a job with the provided username and job ID
 	static async applyToJob(username, job_id) {
 		let res = await this.request(`users/${username}/jobs/${job_id}`, "post");
 		return res;
 	}
-
-	// obviously, you'll add a lot here ...
 }
 
 // for now, put token ("testuser" / "password" on class)

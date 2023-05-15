@@ -4,27 +4,37 @@ import UserContext from "../UserContext";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+	// State to store form data
 	const [form, setForm] = useState({
 		username: "",
 		password: ""
 	});
 
+	// Access the login function from the UserContext
 	const { login } = useContext(UserContext);
+
+	// Access the navigate function from react-router-dom
 	const navigate = useNavigate();
 
+	// Handle input change
 	const handleChange = event => {
+		// Update the form state with the new input value
 		setForm({
 			...form,
 			[event.target.name]: event.target.value
 		});
 	};
 
+	// Handle form submission
 	const handleSubmit = async event => {
 		event.preventDefault();
 		try {
+			// Call the login function with the username and password from the form
 			await login(form.username, form.password);
+			// Navigate to the "/login" page after successful login
 			navigate("/login");
 		} catch (error) {
+			// Log any errors that occur during login
 			console.log(error);
 		}
 	};

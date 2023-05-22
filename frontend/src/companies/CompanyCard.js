@@ -12,11 +12,11 @@ const CompanyCard = ({ name, desc, logo }) => {
 				width: "18rem"
 			}}>
 			<CardBody>
-				// Render the card title with the company name
+				{/* Render the card title with the company name*/}
 				<CardTitle tag="h5">{name}</CardTitle>
-				// Render the card text with the company description
+				{/* Render the card text with the company description */}
 				<CardText>{desc}</CardText>
-				// Render the company logo
+				{/* Render the company logo */}
 				<img
 					src={logo}
 					alt={name}

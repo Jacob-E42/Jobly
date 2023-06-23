@@ -3,7 +3,7 @@ import { Form, Input, Button } from "reactstrap";
 
 const Search = ({ searchFor }) => {
 	// State to store the search term
-	const [searchTerm, setSearchTerm] = useState(null);
+	const [searchTerm, setSearchTerm] = useState("");
 
 	// Handle input change
 	const handleChange = useCallback(

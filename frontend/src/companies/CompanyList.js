@@ -16,7 +16,10 @@ const CompanyList = () => {
 
 	const search = async name => {
 		// Perform a search for companies with the provided name
-		let companies = await JoblyApi.getCompanies(name);
+		let companies;
+		if (name) companies = await JoblyApi.getCompanies(name);
+		else companies = await JoblyApi.getAllCompanies();
+
 		setCompanies(companies);
 	};
 

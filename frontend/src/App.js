@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import UserContext from "./UserContext";
 import JoblyApi from "./api/api";
-import Router from "./routes/Router";
+import RouterComponent from "./routes/Router";
 import jwtDecode from "jwt-decode";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
 	const [token, setToken] = useState(null);
@@ -47,11 +48,13 @@ function App() {
 	};
 
 	return (
-		<UserContext.Provider value={{ currentUser, login, logout }}>
-			<div className="App">
-				<Router />
-			</div>
-		</UserContext.Provider>
+		<BrowserRouter>
+			<UserContext.Provider value={{ currentUser, login, logout }}>
+				<div className="App">
+					<RouterComponent />
+				</div>
+			</UserContext.Provider>
+		</BrowserRouter>
 	);
 }
 

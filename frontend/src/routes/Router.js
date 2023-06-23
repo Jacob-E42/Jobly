@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../homepage/Home";
 import CompanyList from "../companies/CompanyList";
 import CompanyPage from "../companies/CompanyPage";
@@ -13,7 +13,7 @@ const Router = () => {
 	// const [currentCompany, setCurrentCompany] = useState(null);
 
 	return (
-		<BrowserRouter>
+		<>
 			<Nav />
 			<Routes>
 				<Route
@@ -53,7 +53,7 @@ const Router = () => {
 					element={<Profile />}
 				/>
 			</Routes>
-		</BrowserRouter>
+		</>
 	);
 };
 

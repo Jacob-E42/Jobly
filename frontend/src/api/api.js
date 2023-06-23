@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
@@ -27,7 +27,10 @@ class JoblyApi {
 			return (await axios({ url, method, data, params, headers })).data;
 		} catch (err) {
 			console.error("API Error:", err.response);
-			let message = err.response.data.error.message;
+			let message;
+			if (err.response) message = err.response.data.error.message;
+			else message = err;
+
 			throw Array.isArray(message) ? message : [message];
 		}
 	}
@@ -71,6 +74,12 @@ class JoblyApi {
 	// Get a list of companies with names matching the provided value
 	static async getCompanies(name) {
 		let res = await this.request(`companies`, { name });
+		return res.companies;
+	}
+
+	//Get all companies
+	static async getAllCompanies() {
+		let res = await this.request("companies");
 		return res.companies;
 	}
 
@@ -129,4 +138,4 @@ JoblyApi.token =
 	"SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
 	"FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
-module.exports = JoblyApi;
+export default JoblyApi;

@@ -1,5 +1,5 @@
 import React from "react";
-import UserContext from "./auth/UserContext";
+import UserContext from "./UserContext";
 
 const demoUser = {
 	username: "testuser",

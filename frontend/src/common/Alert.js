@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Alert } from "reactstrap";
 
-function AlertMessage({ msg, color = "primary" }) {
+function AlertMessage({ msg, color = "success" }) {
+	console.debug("Alert", "color=", color, "messages=", msg);
+
 	// State to control the visibility of the alert message
 	const [visible, setVisible] = useState(true);
 

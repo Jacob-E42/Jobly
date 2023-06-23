@@ -6,7 +6,17 @@ test("Alert renders without crashing", () => {
 	render(<Alert />);
 });
 
-test("Alert matches snapshot", () => {
-	const { asFragment } = render(<Alert />);
+test("Alert matches snapshot for success", () => {
+	const { asFragment } = render(<Alert msg={"I did it!"} />);
+	expect(asFragment()).toMatchSnapshot();
+});
+
+test("Alert matches snapshot for danger", () => {
+	const { asFragment } = render(
+		<Alert
+			color="danger"
+			msg="You did not enter the correct information"
+		/>
+	);
 	expect(asFragment()).toMatchSnapshot();
 });

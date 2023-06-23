@@ -8,7 +8,10 @@ const JobCardList = ({ jobs }) => {
 			className="JobCardList
 		">
 			{jobs.map(job => (
-				<JobCard job={job} />
+				<JobCard
+					key={job.id}
+					job={job}
+				/>
 			))}
 		</div>
 	);

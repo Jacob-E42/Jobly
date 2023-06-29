@@ -44,6 +44,15 @@ function App() {
 		}
 	};
 
+	const signup = async data => {
+		console.debug("signup:", "currentUser", currentUser, "token", token);
+		const signupToken = await JoblyApi.register(...data);
+		console.log("token recieved", signupToken);
+		if (signupToken) {
+			setToken(token => signupToken);
+		}
+	};
+
 	const logout = () => {
 		setToken(null);
 		setCurrentUser(null);
@@ -51,7 +60,7 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<UserContext.Provider value={{ currentUser, login, logout }}>
+			<UserContext.Provider value={{ currentUser, login, logout, signup }}>
 				<div className="App">
 					<RouterComponent />
 				</div>

@@ -16,3 +16,16 @@ a {
 	text-align: left;
 	font-weight: bold;
 }
+
+button.link-button {
+	text-align: right;
+	color: black;
+	font-size: 1rem;
+	text-decoration: none;
+	margin: 5px;
+	background: none !important;
+	border: none;
+	padding: 0 !important;
+
+	cursor: pointer;
+}

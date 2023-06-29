@@ -54,6 +54,7 @@ function App() {
 	};
 
 	const logout = () => {
+		console.debug("logout");
 		setToken(null);
 		setCurrentUser(null);
 	};

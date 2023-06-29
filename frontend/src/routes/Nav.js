@@ -1,10 +1,19 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { Button } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../UserContext";
 import "./Nav.css";
 
 const Nav = () => {
-	const { currentUser } = useContext(UserContext);
+	const { currentUser, logout } = useContext(UserContext);
+
+	// Access the navigate function from react-router-dom
+	const navigate = useNavigate();
+	const handleLogout = async evt => {
+		logout();
+		navigate("/");
+	};
 	return (
 		<nav className="Nav">
 			<NavLink
@@ -24,7 +33,11 @@ const Nav = () => {
 			{currentUser && (
 				<>
 					<NavLink to="/profile">{currentUser.username}</NavLink>
-					<NavLink>Log Out</NavLink>
+					<button
+						className="link-button"
+						onClick={handleLogout}>
+						Log Out
+					</button>
 				</>
 			)}
 		</nav>

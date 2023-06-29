@@ -7,12 +7,13 @@ const JobCardList = ({ jobs }) => {
 		<div
 			className="JobCardList
 		">
-			{jobs.map(job => (
-				<JobCard
-					key={job.id}
-					job={job}
-				/>
-			))}
+			{jobs &&
+				jobs.map(job => (
+					<JobCard
+						key={job.id}
+						job={job}
+					/>
+				))}
 		</div>
 	);
 };

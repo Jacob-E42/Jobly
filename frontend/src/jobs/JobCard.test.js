@@ -19,3 +19,12 @@ test("JobCard matches snapshot", () => {
 	);
 	expect(asFragment()).toMatchSnapshot();
 });
+
+test("JobCard matches snapshot without job", () => {
+	const { asFragment } = render(
+		<MemoryRouter>
+			<JobCard />
+		</MemoryRouter>
+	);
+	expect(asFragment()).toMatchSnapshot();
+});

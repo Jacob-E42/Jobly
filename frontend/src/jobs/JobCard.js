@@ -12,16 +12,18 @@ const JobCard = ({ job }) => {
 			style={{
 				width: "18rem"
 			}}>
-			<CardBody>
-				<CardTitle tag="h5">{job.title}</CardTitle>{" "}
-				{/* Render the job title as a heading in the Card component */}
-				<CardText>
-					<span>Salary: {job.salary ? addCommas(job.salary) : "N/A"}</span>{" "}
-					{/* Render the job salary, or "N/A" if not available */}
-					<span>Equity: {job.equity ? job.equity : 0}</span>{" "}
-					{/* Render the job equity, or 0 if not available */}
-				</CardText>
-			</CardBody>
+			{job && (
+				<CardBody>
+					<CardTitle tag="h5">{job.title}</CardTitle>{" "}
+					{/* Render the job title as a heading in the Card component */}
+					<CardText>
+						<span>Salary: {job.salary ? addCommas(job.salary) : "N/A"}</span>{" "}
+						{/* Render the job salary, or "N/A" if not available */}
+						<span>Equity: {job.equity ? job.equity : 0}</span>{" "}
+						{/* Render the job equity, or 0 if not available */}
+					</CardText>
+				</CardBody>
+			)}
 		</Card>
 	);
 };

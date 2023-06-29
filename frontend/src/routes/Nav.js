@@ -23,7 +23,7 @@ const Nav = () => {
 
 			{currentUser && (
 				<>
-					<span>{currentUser.username}</span>
+					<NavLink to="/profile">{currentUser.username}</NavLink>
 					<NavLink>Log Out</NavLink>
 				</>
 			)}

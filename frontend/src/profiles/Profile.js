@@ -7,12 +7,12 @@ const Profile = () => {
 		<div>
 			{currentUser && (
 				<div>
-					<span>Username: {currentUser.username}</span>
-					<span>first Name: {currentUser.firstName}</span>
-					<span>Last Name: {currentUser.lastName}</span>
-					<span>Email: {currentUser.email}</span>
-					<span>Admin: {currentUser.isAdmin}</span>
-					<span>Applications: {currentUser.applications}</span>
+					<p>Username: {currentUser.username}</p>
+					<p>first Name: {currentUser.firstName}</p>
+					<p>Last Name: {currentUser.lastName}</p>
+					<p>Email: {currentUser.email}</p>
+					<p>Admin: {currentUser.isAdmin}</p>
+					<p>Applications: {currentUser.applications}</p>
 				</div>
 			)}
 		</div>

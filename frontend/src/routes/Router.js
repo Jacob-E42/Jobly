@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import UserContext from "../UserContext";
 import Home from "../homepage/Home";
 import CompanyList from "../companies/CompanyList";
 import CompanyPage from "../companies/CompanyPage";

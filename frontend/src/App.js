@@ -17,10 +17,11 @@ function App() {
 			async function getCurrentUser() {
 				if (token) {
 					try {
-						const { username } = jwtDecode(token);
+						const { username } = await jwtDecode(token);
 						// put the token on the Api class so it can use it to call the API.
 						JoblyApi.token = token;
 						const currentUser = await JoblyApi.getCurrentUser(username);
+						console.log("current user received", currentUser);
 						setCurrentUser(currentUser);
 					} catch (err) {
 						console.error("App loadUserInfo: problem loading", err);
@@ -34,9 +35,10 @@ function App() {
 		[token]
 	);
 
-	const login = (username, password) => {
-		const logintoken = JoblyApi.login(username, password);
-
+	const login = async (username, password) => {
+		console.debug("login:", "currentUser", currentUser, "token", token);
+		const logintoken = await JoblyApi.login(username, password);
+		console.log("token recieved", logintoken);
 		if (logintoken) {
 			setToken(token => logintoken);
 		}

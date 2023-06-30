@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import { NavLink } from "react-router-dom";
 // import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
@@ -10,10 +10,14 @@ const Nav = () => {
 
 	// Access the navigate function from react-router-dom
 	const navigate = useNavigate();
-	const handleLogout = async evt => {
-		logout();
-		navigate("/");
-	};
+
+	const handleLogout = useCallback(
+		async evt => {
+			logout();
+			navigate("/");
+		},
+		[logout, navigate]
+	);
 	return (
 		<nav className="Nav">
 			<NavLink

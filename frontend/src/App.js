@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import UserContext from "./UserContext";
 import JoblyApi from "./api/api";
@@ -35,30 +35,36 @@ function App() {
 		[token]
 	);
 
-	const login = async (username, password) => {
-		console.debug("login:", "currentUser", currentUser, "token", token);
-		const logintoken = await JoblyApi.login(username, password);
-		console.log("token recieved", logintoken);
-		if (logintoken) {
-			setToken(token => logintoken);
-		}
-	};
+	const login = useCallback(
+		async (username, password) => {
+			console.debug("login:", "currentUser", currentUser, "token", token);
+			const logintoken = await JoblyApi.login(username, password);
+			console.log("token received", logintoken);
+			if (logintoken) {
+				setToken(token => logintoken);
+			}
+		},
+		[currentUser, token]
+	); // depends on currentUser and token
 
-	const signup = async data => {
-		console.debug("signup:", "currentUser", currentUser, "token", token, data);
-		const { username, password, firstName, lastName, email } = data;
-		const signupToken = await JoblyApi.register(username, password, firstName, lastName, email);
-		console.log("token recieved", signupToken);
-		if (signupToken) {
-			setToken(token => signupToken);
-		}
-	};
+	const signup = useCallback(
+		async data => {
+			console.debug("signup:", "currentUser", currentUser, "token", token, data);
+			const { username, password, firstName, lastName, email } = data;
+			const signupToken = await JoblyApi.register(username, password, firstName, lastName, email);
+			console.log("token received", signupToken);
+			if (signupToken) {
+				setToken(token => signupToken);
+			}
+		},
+		[currentUser, token]
+	); // depends on currentUser and token
 
-	const logout = () => {
+	const logout = useCallback(() => {
 		console.debug("logout");
 		setToken(null);
 		setCurrentUser(null);
-	};
+	}, []); // does not depend on any state or props
 
 	return (
 		<BrowserRouter>

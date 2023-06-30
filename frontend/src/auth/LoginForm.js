@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import UserContext from "../UserContext";
 import { useNavigate } from "react-router-dom";
@@ -17,27 +17,30 @@ const LoginForm = () => {
 	const navigate = useNavigate();
 
 	// Handle input change
-	const handleChange = event => {
+	const handleChange = useCallback(event => {
 		// Update the form state with the new input value
-		setForm({
+		setForm(form => ({
 			...form,
 			[event.target.name]: event.target.value
-		});
-	};
+		}));
+	}, []); // does not depend on any state or props
 
 	// Handle form submission
-	const handleSubmit = async event => {
-		event.preventDefault();
-		try {
-			// Call the login function with the username and password from the form
-			await login(form.username, form.password);
-			// Navigate to the "/login" page after successful login
-			navigate("/profile");
-		} catch (error) {
-			// Log any errors that occur during login
-			console.log(error);
-		}
-	};
+	const handleSubmit = useCallback(
+		async event => {
+			event.preventDefault();
+			try {
+				// Call the login function with the username and password from the form
+				await login(form.username, form.password);
+				// Navigate to the "/login" page after successful login
+				navigate("/profile");
+			} catch (error) {
+				// Log any errors that occur during login
+				console.log(error);
+			}
+		},
+		[login, navigate, form]
+	);
 
 	return (
 		<Form onSubmit={handleSubmit}>

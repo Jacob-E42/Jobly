@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import UserContext from "../UserContext";
 import { useNavigate } from "react-router-dom";
@@ -20,27 +20,30 @@ const SignupForm = () => {
 	const navigate = useNavigate();
 
 	// Handle input change
-	const handleChange = event => {
+	const handleChange = useCallback(event => {
 		// Update the form state with the new input value
-		setForm({
+		setForm(form => ({
 			...form,
 			[event.target.name]: event.target.value
-		});
-	};
+		}));
+	}, []); // does not depend on any state or props
 
 	// Handle form submission
-	const handleSubmit = async event => {
-		event.preventDefault();
-		try {
-			// Call the signup function with the form data
-			await signup(form);
-			// Navigate to the "/profile" page after successful signup
-			navigate("/profile");
-		} catch (error) {
-			// Log any errors that occur during signup
-			console.log(error);
-		}
-	};
+	const handleSubmit = useCallback(
+		async event => {
+			event.preventDefault();
+			try {
+				// Call the signup function with the form data
+				await signup(form);
+				// Navigate to the "/profile" page after successful signup
+				navigate("/profile");
+			} catch (error) {
+				// Log any errors that occur during signup
+				console.log(error);
+			}
+		},
+		[form, signup, navigate]
+	); // depends on form, signup, and navigate
 
 	return (
 		<Form onSubmit={handleSubmit}>

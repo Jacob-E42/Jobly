@@ -36,7 +36,7 @@ const SignupForm = () => {
 				// Call the signup function with the form data
 				await signup(form);
 				// Navigate to the "/profile" page after successful signup
-				navigate("/profile");
+				navigate("/");
 			} catch (error) {
 				// Log any errors that occur during signup
 				console.log(error);

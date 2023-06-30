@@ -33,7 +33,7 @@ const LoginForm = () => {
 				// Call the login function with the username and password from the form
 				await login(form.username, form.password);
 				// Navigate to the "/login" page after successful login
-				navigate("/profile");
+				navigate("/");
 			} catch (error) {
 				// Log any errors that occur during login
 				console.log(error);

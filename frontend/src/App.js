@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import "./App.css";
 import UserContext from "./UserContext";
 import JoblyApi from "./api/api";
@@ -11,6 +11,7 @@ function App() {
 	const [token, setToken] = useLocalStorage("token", null);
 	const [currentUser, setCurrentUser] = useLocalStorage("currentUser", null);
 	console.log("token", token, "currentuser", currentUser);
+
 	useEffect(
 		function loadUserInfo() {
 			console.debug("App useEffect loadUserInfo", "token=", token);
@@ -33,7 +34,7 @@ function App() {
 
 			getCurrentUser();
 		},
-		[token]
+		[token, setCurrentUser]
 	);
 
 	const login = useCallback(
@@ -45,7 +46,7 @@ function App() {
 				setToken(logintoken);
 			}
 		},
-		[currentUser, token]
+		[currentUser, token, setToken]
 	); // depends on currentUser and token
 
 	const signup = useCallback(
@@ -58,14 +59,14 @@ function App() {
 				setToken(signupToken);
 			}
 		},
-		[currentUser, token]
+		[currentUser, token, setToken]
 	); // depends on currentUser and token
 
 	const logout = useCallback(() => {
 		console.debug("logout");
 		setToken(null);
 		setCurrentUser(null);
-	}, []); // does not depend on any state or props
+	}, [setCurrentUser, setToken]); // does not depend on any state or props
 
 	return (
 		<BrowserRouter>

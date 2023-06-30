@@ -5,11 +5,12 @@ import JoblyApi from "./api/api";
 import RouterComponent from "./routes/Router";
 import jwtDecode from "jwt-decode";
 import { BrowserRouter } from "react-router-dom";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-	const [token, setToken] = useState(null);
-	const [currentUser, setCurrentUser] = useState(null);
-
+	const [token, setToken] = useLocalStorage("token", null);
+	const [currentUser, setCurrentUser] = useLocalStorage("currentUser", null);
+	console.log("token", token, "currentuser", currentUser);
 	useEffect(
 		function loadUserInfo() {
 			console.debug("App useEffect loadUserInfo", "token=", token);
@@ -21,7 +22,7 @@ function App() {
 						// put the token on the Api class so it can use it to call the API.
 						JoblyApi.token = token;
 						const currentUser = await JoblyApi.getCurrentUser(username);
-						console.log("current user received", currentUser);
+
 						setCurrentUser(currentUser);
 					} catch (err) {
 						console.error("App loadUserInfo: problem loading", err);
@@ -39,9 +40,9 @@ function App() {
 		async (username, password) => {
 			console.debug("login:", "currentUser", currentUser, "token", token);
 			const logintoken = await JoblyApi.login(username, password);
-			console.log("token received", logintoken);
+
 			if (logintoken) {
-				setToken(token => logintoken);
+				setToken(logintoken);
 			}
 		},
 		[currentUser, token]
@@ -54,7 +55,7 @@ function App() {
 			const signupToken = await JoblyApi.register(username, password, firstName, lastName, email);
 			console.log("token received", signupToken);
 			if (signupToken) {
-				setToken(token => signupToken);
+				setToken(signupToken);
 			}
 		},
 		[currentUser, token]

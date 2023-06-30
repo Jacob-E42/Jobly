@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "../homepage/Home";
 import CompanyList from "../companies/CompanyList";
@@ -9,9 +9,13 @@ import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 import Profile from "../profiles/Profile";
 import Nav from "./Nav";
+import UserContext from "../UserContext";
 
 const Router = () => {
-	// const [currentCompany, setCurrentCompany] = useState(null);
+	const ProtectedRoute = ({ children }) => {
+		const { currentUser } = useContext(UserContext);
+		return currentUser ? children : <Navigate to="/login" />;
+	};
 
 	return (
 		<>
@@ -25,17 +29,29 @@ const Router = () => {
 				<Route
 					exact
 					path={"/companies"}
-					element={<CompanyList />}
+					element={
+						<ProtectedRoute>
+							<CompanyList />
+						</ProtectedRoute>
+					}
 				/>
 				<Route
 					exact
 					path={"/companies/:handle"}
-					element={<CompanyPage />}
+					element={
+						<ProtectedRoute>
+							<CompanyPage />
+						</ProtectedRoute>
+					}
 				/>
 				<Route
 					exact
 					path={"/jobs"}
-					element={<JobsPage />}
+					element={
+						<ProtectedRoute>
+							<JobsPage />
+						</ProtectedRoute>
+					}
 				/>
 
 				<Route

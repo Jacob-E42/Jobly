@@ -45,8 +45,9 @@ function App() {
 	};
 
 	const signup = async data => {
-		console.debug("signup:", "currentUser", currentUser, "token", token);
-		const signupToken = await JoblyApi.register(...data);
+		console.debug("signup:", "currentUser", currentUser, "token", token, data);
+		const { username, password, firstName, lastName, email } = data;
+		const signupToken = await JoblyApi.register(username, password, firstName, lastName, email);
 		console.log("token recieved", signupToken);
 		if (signupToken) {
 			setToken(token => signupToken);

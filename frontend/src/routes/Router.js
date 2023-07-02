@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import Home from "../homepage/Home";
 import CompanyList from "../companies/CompanyList";
@@ -9,12 +9,26 @@ import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 import Profile from "../profiles/Profile";
 import Nav from "./Nav";
+import Alert from "../common/Alert";
 import UserContext from "../UserContext";
 
 const Router = () => {
 	const ProtectedRoute = ({ children }) => {
 		const { currentUser } = useContext(UserContext);
-		return currentUser ? children : <Navigate to="/login" />;
+
+		if (currentUser) return children;
+		else {
+			return (
+				<Navigate
+					to="/login"
+					replace={true}>
+					<Alert
+						type="failure"
+						messages={["You need to be logged in to access that page"]}
+					/>
+				</Navigate>
+			);
+		}
 	};
 
 	return (

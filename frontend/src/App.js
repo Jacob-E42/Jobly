@@ -51,7 +51,7 @@ function App() {
 
 	const signup = useCallback(
 		async data => {
-			console.debug("signup:", "currentUser", currentUser, "token", token, data);
+			console.debug("signup:", "currentUser", currentUser, "token", token);
 			const { username, password, firstName, lastName, email } = data;
 			const signupToken = await JoblyApi.register(username, password, firstName, lastName, email);
 			console.log("token received", signupToken);
@@ -62,6 +62,21 @@ function App() {
 		[currentUser, token, setToken]
 	); // depends on currentUser and token
 
+	const updateCurrentUser = useCallback(
+		async data => {
+			console.debug("updateCurrentUser:", "data", data);
+			const { username, password } = data;
+			delete data.username;
+			if (!password) delete data.password;
+			const updatedUser = await JoblyApi.editCurrentUser(username, data);
+			console.log("new user", updatedUser);
+			if (updatedUser) {
+				setCurrentUser(updatedUser);
+			}
+		},
+		[setCurrentUser]
+	); // depends on currentUser and token
+
 	const logout = useCallback(() => {
 		console.debug("logout");
 		setToken(null);
@@ -70,7 +85,7 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<UserContext.Provider value={{ currentUser, login, logout, signup }}>
+			<UserContext.Provider value={{ currentUser, login, logout, signup, updateCurrentUser }}>
 				<div className="App">
 					<RouterComponent />
 				</div>

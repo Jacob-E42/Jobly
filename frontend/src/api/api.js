@@ -55,6 +55,13 @@ class JoblyApi {
 		return res.user;
 	}
 
+	// Get the current user's information based on the provided username
+	static async editCurrentUser(username, data) {
+		console.debug("editCurrentUser", username, data);
+		let res = await this.request(`users/${username}`, data, "patch");
+		return res.user;
+	}
+
 	// Create a new company with the provided handle, name, description, number of employees, and logo URL
 	static async createCompany(handle, name, description, numEmployees, logoUrl) {
 		let res = await this.request(

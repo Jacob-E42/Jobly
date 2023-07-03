@@ -83,9 +83,23 @@ function App() {
 		setCurrentUser(null);
 	}, [setCurrentUser, setToken]); // does not depend on any state or props
 
+	const apply = useCallback(
+		async (username, jobId) => {
+			console.debug("apply", "username", username, "jobId", jobId);
+			const applied = await JoblyApi.applyToJob(username, jobId);
+			if (applied.applied === jobId) {
+				setCurrentUser(currentUser => ({
+					...currentUser,
+					applications: [...currentUser.applications, jobId]
+				}));
+			}
+		},
+		[setCurrentUser]
+	);
+
 	return (
 		<BrowserRouter>
-			<UserContext.Provider value={{ currentUser, login, logout, signup, updateCurrentUser }}>
+			<UserContext.Provider value={{ currentUser, login, logout, signup, updateCurrentUser, apply }}>
 				<div className="App">
 					<RouterComponent />
 				</div>

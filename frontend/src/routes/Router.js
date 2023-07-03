@@ -21,12 +21,8 @@ const Router = () => {
 			return (
 				<Navigate
 					to="/login"
-					replace={true}>
-					<Alert
-						type="failure"
-						messages={["You need to be logged in to access that page"]}
-					/>
-				</Navigate>
+					replace={true}
+				/>
 			);
 		}
 	};

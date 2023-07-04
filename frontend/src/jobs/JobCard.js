@@ -6,11 +6,12 @@ import UserContext from "../UserContext";
 
 const JobCard = ({ job }) => {
 	const { currentUser, apply } = useContext(UserContext);
-	const [applied, setApplied] = useState(false);
+	const [applied, setApplied] = useState(currentUser.applications.includes(job.id) ? true : false);
 
 	const handleApply = async () => {
 		console.debug("handleApply");
 		try {
+			// if (currentUser.applications.includes(job.id))
 			await apply(currentUser.username, job.id);
 			setApplied(true);
 		} catch (error) {

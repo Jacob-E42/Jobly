@@ -1,12 +1,8 @@
 .CompanyList {
-	text-align: center;
+	/* text-align: center; */
 	display: inline-block;
 }
 
 .Card {
 	border: solid black 2px;
-	text-align: left;
-}
-
-a {
 }

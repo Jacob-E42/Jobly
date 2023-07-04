@@ -6,6 +6,7 @@ import RouterComponent from "./routes/Router";
 import jwtDecode from "jwt-decode";
 import { BrowserRouter } from "react-router-dom";
 import useLocalStorage from "./hooks/useLocalStorage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
 	const [token, setToken] = useLocalStorage("token", null);
@@ -87,6 +88,7 @@ function App() {
 		async (username, jobId) => {
 			console.debug("apply", "username", username, "jobId", jobId);
 			const applied = await JoblyApi.applyToJob(username, jobId);
+			console.log(applied);
 			if (applied.applied === jobId) {
 				setCurrentUser(currentUser => ({
 					...currentUser,

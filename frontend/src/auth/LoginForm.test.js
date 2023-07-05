@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import { UserProvider } from "../mock";
 import UserContext from "../UserContext";
 import LoginForm from "./LoginForm";
+
+jest.mock("../JoblyApi", () => ({
+	login: jest.fn(() => Promise.resolve("mockToken"))
+}));
 
 test("LoginForm renders without crashing", () => {
 	render(<LoginForm />);
@@ -70,11 +74,9 @@ test("Submitting the form triggers login and modifies NavBar", async () => {
 	fireEvent.click(screen.getByText("Submit"));
 
 	// Wait for promises to resolve
-	await waitFor(() => {
-		expect(login).toHaveBeenCalledTimes(1);
-		expect(login).toHaveBeenCalledWith("username", "password");
-		expect(navigate).toHaveBeenCalledWith("/");
-	});
+	await waitFor(() => expect(login).toHaveBeenCalledTimes(1));
+	await waitFor(() => expect(login).toHaveBeenCalledWith("username", "password"));
+	await waitFor(() => expect(navigate).toHaveBeenCalledWith("/"));
 
 	// Here you'd assert that NavBar now shows "Logout" and does not show "Login" and "Signup"
 	// This would likely involve rendering the NavBar component and making assertions about its content

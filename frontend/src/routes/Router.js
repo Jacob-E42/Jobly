@@ -19,10 +19,16 @@ const Router = () => {
 		if (currentUser) return children;
 		else {
 			return (
-				<Navigate
-					to="/login"
-					replace={true}
-				/>
+				<>
+					<Navigate
+						to="/login"
+						replace={true}
+					/>
+					<Alert
+						msg="You need to be logged in to access this page"
+						color="failure"
+					/>
+				</>
 			);
 		}
 	};

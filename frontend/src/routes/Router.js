@@ -12,7 +12,7 @@ import Nav from "./Nav";
 import Alert from "../common/Alert";
 import UserContext from "../UserContext";
 
-const Router = () => {
+const RouterComponent = () => {
 	const ProtectedRoute = ({ children }) => {
 		const { currentUser } = useContext(UserContext);
 
@@ -90,4 +90,4 @@ const Router = () => {
 	);
 };
 
-export default Router;
+export default RouterComponent;

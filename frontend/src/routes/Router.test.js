@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { UserProvider } from "../testMock";
+import { UserProvider } from "../mock";
 import Router from "./Router";
 
 test("Router renders without crashing", () => {

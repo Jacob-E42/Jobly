@@ -28,6 +28,9 @@ const LoginForm = () => {
 	// Handle form submission
 	const handleSubmit = useCallback(
 		async event => {
+			if (!login) {
+				console.error("login is not defined. Check UserContext");
+			}
 			event.preventDefault();
 			try {
 				// Call the login function with the username and password from the form

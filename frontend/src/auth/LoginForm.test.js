@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, screen, waitFor, act } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import { UserProvider, AnonUserProvider } from "../mock";
 import { MemoryRouter } from "react-router";
 import LoginForm from "./LoginForm";
@@ -58,13 +58,6 @@ test("login works", async () => {
 	// Submit the form
 
 	fireEvent.click(screen.getByText(/submit/i));
-
-	// Wrap the form submission in act
-	// await act(async () => {
-	// 	fireEvent.change(screen.getByLabelText(/username/i), { target: { value: "testuser" } });
-	// 	fireEvent.change(screen.getByLabelText(/password/i), { target: { value: "testpass" } });
-	// 	fireEvent.click(screen.getByText(/submit/i));
-	// });
 
 	// Since login is an asynchronous operation, we need to wait for it to complete
 	await waitFor(() => expect(JoblyApi.login).toHaveBeenCalledWith("testuser", "testpass"));

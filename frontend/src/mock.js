@@ -30,7 +30,20 @@ const AnonUserProvider = ({ children }) => {
 		[currentUser]
 	); // depends on currentUser
 
-	return <UserContext.Provider value={{ currentUser, login }}>{children}</UserContext.Provider>;
+	const signup = useCallback(
+		async data => {
+			console.debug("signup:", "currentUser", currentUser);
+			const { username, password, firstName, lastName, email } = data;
+			const signupToken = await JoblyApi.register(username, password, firstName, lastName, email);
+			console.log("token received", signupToken);
+			if (signupToken) {
+				setCurrentUser(signupToken);
+			}
+		},
+		[currentUser]
+	); // depends on currentUser and token
+
+	return <UserContext.Provider value={{ currentUser, login, signup }}>{children}</UserContext.Provider>;
 };
 
 export { UserProvider, AnonUserProvider };

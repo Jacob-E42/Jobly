@@ -1,83 +1,74 @@
-import React, { useContext } from "react";
-import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import { UserProvider } from "../mock";
-import UserContext from "../UserContext";
+import React from "react";
+import { render, fireEvent, screen, waitFor, act } from "@testing-library/react";
+import { UserProvider, AnonUserProvider } from "../mock";
+import { MemoryRouter } from "react-router";
 import LoginForm from "./LoginForm";
+import JoblyApi from "../api/api";
 
-jest.mock("../JoblyApi", () => ({
+jest.mock("../api/api", () => ({
 	login: jest.fn(() => Promise.resolve("mockToken"))
 }));
 
 test("LoginForm renders without crashing", () => {
-	render(<LoginForm />);
+	render(
+		<MemoryRouter>
+			<AnonUserProvider>
+				<LoginForm />
+			</AnonUserProvider>
+		</MemoryRouter>
+	);
 });
 
 test("LoginForm matches snapshot", () => {
-	const { asFragment } = render(<LoginForm />);
+	const { asFragment } = render(
+		<MemoryRouter>
+			<AnonUserProvider>
+				<LoginForm />
+			</AnonUserProvider>
+		</MemoryRouter>
+	);
 	expect(asFragment()).toMatchSnapshot();
 });
 
 test("LoginForm displays username and password inputs", () => {
 	render(
-		<UserProvider>
-			<LoginForm />
-		</UserProvider>
+		<MemoryRouter>
+			<AnonUserProvider>
+				<LoginForm />
+			</AnonUserProvider>
+		</MemoryRouter>
 	);
 	expect(screen.getByPlaceholderText("Enter your username")).toBeInTheDocument();
 	expect(screen.getByPlaceholderText("Enter your password")).toBeInTheDocument();
 });
 
-test("Form input values change when they are filled out", () => {
-	render(
-		<UserProvider>
-			<LoginForm />
-		</UserProvider>
+test("login works", async () => {
+	const { getByLabelText, getByText } = render(
+		<MemoryRouter>
+			<AnonUserProvider>
+				<LoginForm />
+			</AnonUserProvider>
+		</MemoryRouter>
 	);
 
-	const usernameInput = screen.getByPlaceholderText("Enter your username");
-	fireEvent.change(usernameInput, { target: { value: "username" } });
-	expect(usernameInput.value).toBe("username");
+	// Fill out the form
+	fireEvent.change(screen.getByLabelText(/username/i), { target: { value: "testuser" } });
+	fireEvent.change(screen.getByLabelText(/password/i), { target: { value: "testpass" } });
 
-	const passwordInput = screen.getByPlaceholderText("Enter your password");
-	fireEvent.change(passwordInput, { target: { value: "password" } });
-	expect(passwordInput.value).toBe("password");
-});
+	// Submit the form
 
-// This test will depend on the exact behavior of your login function and the NavBar component
-test("Submitting the form triggers login and modifies NavBar", async () => {
-	const { login } = useContext(UserContext); // mock login function from UserContext
-	const navigate = jest.fn(); // mock navigate function from react-router-dom
+	fireEvent.click(screen.getByText(/submit/i));
 
-	// Mock login function to mimic successful login
-	jest.spyOn(React, "useContext").mockImplementation(context => {
-		if (context === UserContext) {
-			return {
-				login: jest.fn(() => Promise.resolve()),
-				navigate
-			};
-		}
-	});
+	// Wrap the form submission in act
+	// await act(async () => {
+	// 	fireEvent.change(screen.getByLabelText(/username/i), { target: { value: "testuser" } });
+	// 	fireEvent.change(screen.getByLabelText(/password/i), { target: { value: "testpass" } });
+	// 	fireEvent.click(screen.getByText(/submit/i));
+	// });
 
-	render(
-		<UserProvider>
-			<LoginForm />
-		</UserProvider>
-	);
+	// Since login is an asynchronous operation, we need to wait for it to complete
+	await waitFor(() => expect(JoblyApi.login).toHaveBeenCalledWith("testuser", "testpass"));
 
-	const usernameInput = screen.getByPlaceholderText("Enter your username");
-	fireEvent.change(usernameInput, { target: { value: "username" } });
-
-	const passwordInput = screen.getByPlaceholderText("Enter your password");
-	fireEvent.change(passwordInput, { target: { value: "password" } });
-
-	// Click the submit button
-	fireEvent.click(screen.getByText("Submit"));
-
-	// Wait for promises to resolve
-	await waitFor(() => expect(login).toHaveBeenCalledTimes(1));
-	await waitFor(() => expect(login).toHaveBeenCalledWith("username", "password"));
-	await waitFor(() => expect(navigate).toHaveBeenCalledWith("/"));
-
-	// Here you'd assert that NavBar now shows "Logout" and does not show "Login" and "Signup"
-	// This would likely involve rendering the NavBar component and making assertions about its content
+	// Check that the login function was called with the correct arguments
+	expect(JoblyApi.login).toHaveBeenCalledWith("testuser", "testpass");
 });

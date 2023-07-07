@@ -3,6 +3,8 @@ import Search from "../common/Search";
 import { Link } from "react-router-dom";
 import JoblyApi from "../api/api";
 import CompanyCard from "./CompanyCard";
+import LoadingSpinner from "../common/LoadingSpinner";
+import Alert from "../common/Alert";
 import "./Companies.css";
 
 const CompanyList = () => {
@@ -19,9 +21,17 @@ const CompanyList = () => {
 		let companies;
 		if (name) companies = await JoblyApi.getCompanies(name);
 		else companies = await JoblyApi.getAllCompanies();
-
+		if (companies.length === 0)
+			return (
+				<Alert
+					msg="There are no companies"
+					color="failure"
+				/>
+			);
 		setCompanies(companies);
 	};
+
+	if (!companies) return <LoadingSpinner />;
 
 	return (
 		<div className="CompanyList">

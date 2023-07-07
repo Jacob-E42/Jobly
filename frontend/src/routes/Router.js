@@ -12,27 +12,27 @@ import Nav from "./Nav";
 import Alert from "../common/Alert";
 import UserContext from "../UserContext";
 
+const ProtectedRoute = ({ children }) => {
+	const { currentUser } = useContext(UserContext);
+
+	if (currentUser) return children;
+	else {
+		return (
+			<>
+				<Navigate
+					to="/login"
+					replace={true}
+				/>
+				<Alert
+					msg="You need to be logged in to access this page"
+					color="failure"
+				/>
+			</>
+		);
+	}
+};
+
 const RouterComponent = () => {
-	const ProtectedRoute = ({ children }) => {
-		const { currentUser } = useContext(UserContext);
-
-		if (currentUser) return children;
-		else {
-			return (
-				<>
-					<Navigate
-						to="/login"
-						replace={true}
-					/>
-					<Alert
-						msg="You need to be logged in to access this page"
-						color="failure"
-					/>
-				</>
-			);
-		}
-	};
-
 	return (
 		<>
 			<Nav />

@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { UserProvider } from "../testMock";
+import { UserProvider } from "../mock";
 import CompanyPage from "./CompanyPage";
 
 test("CompanyPage renders without crashing", () => {

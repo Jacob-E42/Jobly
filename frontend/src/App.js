@@ -31,13 +31,7 @@ function App() {
 
 						let uniqueApplications = [...applications, ...currentUser.applications];
 						uniqueApplications = [...new Set(uniqueApplications)];
-						console.log(
-							Array.isArray(uniqueApplications),
-							applications,
-							currentUser.applications,
-							uniqueApplications
-						);
-						console.log(typeof uniqueApplications);
+
 						setApplications(uniqueApplications);
 					} catch (err) {
 						console.error("App loadUserInfo: problem loading", err);

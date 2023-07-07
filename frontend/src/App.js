@@ -1,6 +1,7 @@
 import { useEffect, useCallback } from "react";
 import "./App.css";
 import UserContext from "./UserContext";
+import ApplicationsContext from "./ApplicationsContext";
 import JoblyApi from "./api/api";
 import RouterComponent from "./routes/Router";
 import jwtDecode from "jwt-decode";
@@ -31,13 +32,14 @@ function App() {
 					} catch (err) {
 						console.error("App loadUserInfo: problem loading", err);
 						setCurrentUser(null);
+						setApplications([]);
 					}
 				}
 			}
 
 			getCurrentUser();
 		},
-		[token, setCurrentUser]
+		[token, setCurrentUser, setApplications]
 	);
 
 	const login = useCallback(
@@ -92,21 +94,22 @@ function App() {
 			const applied = await JoblyApi.applyToJob(username, jobId);
 			console.log(applied);
 			if (applied.applied === jobId) {
-				setCurrentUser(currentUser => ({
-					...currentUser,
-					applications: [...currentUser.applications, jobId]
+				setApplications(applications => ({
+					applications: [...applications, jobId]
 				}));
 			}
 		},
-		[setCurrentUser]
+		[setApplications]
 	);
 
 	return (
 		<BrowserRouter>
-			<UserContext.Provider value={{ currentUser, login, logout, signup, updateCurrentUser, apply }}>
-				<div className="App">
-					<RouterComponent />
-				</div>
+			<UserContext.Provider value={{ currentUser, login, logout, signup, updateCurrentUser }}>
+				<ApplicationsContext value={{ applications, apply }}>
+					<div className="App">
+						<RouterComponent />
+					</div>
+				</ApplicationsContext>
 			</UserContext.Provider>
 		</BrowserRouter>
 	);

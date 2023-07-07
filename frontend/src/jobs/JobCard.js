@@ -3,10 +3,12 @@ import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import addCommas from "./addCommas";
 import "./Jobs.css";
 import UserContext from "../UserContext";
+import ApplicationsContext from "../ApplicationsContext";
 
 const JobCard = ({ job }) => {
-	const { currentUser, apply } = useContext(UserContext);
-	const [applied, setApplied] = useState(currentUser.applications.includes(job.id) ? true : false);
+	const { currentUser } = useContext(UserContext);
+	const { apply, applications } = useContext(ApplicationsContext);
+	const [applied, setApplied] = useState(applications.includes(job.id) ? true : false);
 
 	const handleApply = async () => {
 		console.debug("handleApply");

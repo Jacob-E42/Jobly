@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
 	const [token, setToken] = useLocalStorage("token", null);
 	const [currentUser, setCurrentUser] = useLocalStorage("currentUser", null);
+	const [applications, setApplications] = useLocalStorage("applications", []);
 	console.log("token", token, "currentuser", currentUser);
 
 	useEffect(
@@ -26,6 +27,7 @@ function App() {
 						const currentUser = await JoblyApi.getCurrentUser(username);
 
 						setCurrentUser(currentUser);
+						setApplications(currentUser.applications);
 					} catch (err) {
 						console.error("App loadUserInfo: problem loading", err);
 						setCurrentUser(null);

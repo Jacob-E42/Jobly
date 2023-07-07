@@ -6,10 +6,10 @@ import UserContext from "../UserContext";
 import ApplicationsContext from "../ApplicationsContext";
 
 const JobCard = ({ job }) => {
+	if (!job) throw new Error("You must provide a job!");
 	const { currentUser } = useContext(UserContext);
 	const { apply, applications } = useContext(ApplicationsContext);
 	const [applied, setApplied] = useState(applications.includes(job.id) ? true : false);
-	// console.debug("JobCard", "currentuser", currentUser, "applications", applications, "applied", applied);
 
 	const handleApply = async () => {
 		console.debug("handleApply");

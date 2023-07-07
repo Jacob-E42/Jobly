@@ -13,7 +13,7 @@ function App() {
 	const [token, setToken] = useLocalStorage("token", null);
 	const [currentUser, setCurrentUser] = useLocalStorage("currentUser", null);
 	const [applications, setApplications] = useLocalStorage("applications", []);
-	console.log("token", token, "currentuser", currentUser);
+	console.log("token", token, "currentuser", currentUser, "applications", applications);
 
 	useEffect(
 		function loadUserInfo() {
@@ -28,7 +28,17 @@ function App() {
 						const currentUser = await JoblyApi.getCurrentUser(username);
 
 						setCurrentUser(currentUser);
-						setApplications(currentUser.applications);
+
+						let uniqueApplications = [...applications, ...currentUser.applications];
+						uniqueApplications = [...new Set(uniqueApplications)];
+						console.log(
+							Array.isArray(uniqueApplications),
+							applications,
+							currentUser.applications,
+							uniqueApplications
+						);
+						console.log(typeof uniqueApplications);
+						setApplications(uniqueApplications);
 					} catch (err) {
 						console.error("App loadUserInfo: problem loading", err);
 						setCurrentUser(null);
@@ -39,7 +49,7 @@ function App() {
 
 			getCurrentUser();
 		},
-		[token, setCurrentUser, setApplications]
+		[token, setApplications, setCurrentUser]
 	);
 
 	const login = useCallback(
@@ -94,9 +104,7 @@ function App() {
 			const applied = await JoblyApi.applyToJob(username, jobId);
 			console.log(applied);
 			if (applied.applied === jobId) {
-				setApplications(applications => ({
-					applications: [...applications, jobId]
-				}));
+				setApplications(applications => [...applications, jobId]);
 			}
 		},
 		[setApplications]
@@ -105,11 +113,11 @@ function App() {
 	return (
 		<BrowserRouter>
 			<UserContext.Provider value={{ currentUser, login, logout, signup, updateCurrentUser }}>
-				<ApplicationsContext value={{ applications, apply }}>
+				<ApplicationsContext.Provider value={{ applications, apply }}>
 					<div className="App">
 						<RouterComponent />
 					</div>
-				</ApplicationsContext>
+				</ApplicationsContext.Provider>
 			</UserContext.Provider>
 		</BrowserRouter>
 	);

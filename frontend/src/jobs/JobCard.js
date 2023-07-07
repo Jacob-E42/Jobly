@@ -9,6 +9,7 @@ const JobCard = ({ job }) => {
 	const { currentUser } = useContext(UserContext);
 	const { apply, applications } = useContext(ApplicationsContext);
 	const [applied, setApplied] = useState(applications.includes(job.id) ? true : false);
+	// console.debug("JobCard", "currentuser", currentUser, "applications", applications, "applied", applied);
 
 	const handleApply = async () => {
 		console.debug("handleApply");

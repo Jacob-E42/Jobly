@@ -44,6 +44,11 @@ const Nav = () => {
 					</button>
 				</>
 			)}
+			<button
+				className="link-button"
+				onClick={handleLogout}>
+				Log Out
+			</button>
 		</nav>
 	);
 };

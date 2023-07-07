@@ -14,6 +14,7 @@ import UserContext from "../UserContext";
 
 const ProtectedRoute = ({ children }) => {
 	const { currentUser } = useContext(UserContext);
+	console.log(currentUser);
 
 	if (currentUser) return children;
 	else {

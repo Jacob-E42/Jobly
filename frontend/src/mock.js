@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import UserContext from "./UserContext";
+import ApplicationsContext from "./ApplicationsContext";
 import JoblyApi from "./api/api";
 
 const demoUser = {
@@ -46,4 +47,21 @@ const AnonUserProvider = ({ children }) => {
 	return <UserContext.Provider value={{ currentUser, login, signup }}>{children}</UserContext.Provider>;
 };
 
-export { UserProvider, AnonUserProvider };
+const ApplicationsProvider = ({ children }) => {
+	const [applications, setApplications] = useState([]);
+
+	const apply = useCallback(
+		async (username, jobId) => {
+			console.debug("apply", "username", username, "jobId", jobId);
+			const applied = await JoblyApi.applyToJob(username, jobId);
+			console.log(applied);
+			if (applied.applied === jobId) {
+				setApplications(applications => [...applications, jobId]);
+			}
+		},
+		[setApplications]
+	);
+	return <ApplicationsContext.Provider value={{ applications, apply }}>{children}</ApplicationsContext.Provider>;
+};
+
+export { UserProvider, AnonUserProvider, ApplicationsProvider };

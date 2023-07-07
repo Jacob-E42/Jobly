@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { UserProvider } from "../testMock";
+import { AnonUserProvider, UserProvider } from "../mock";
 import Nav from "./Nav";
 
 test("Nav renders without crashing", () => {
@@ -28,9 +28,9 @@ test("Nav matches snapshot", () => {
 it("matches snapshot when logged out", () => {
 	const { asFragment } = render(
 		<MemoryRouter>
-			<UserProvider currentUser={null}>
+			<AnonUserProvider>
 				<Nav />
-			</UserProvider>
+			</AnonUserProvider>
 		</MemoryRouter>
 	);
 	expect(asFragment()).toMatchSnapshot();

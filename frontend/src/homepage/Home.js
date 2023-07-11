@@ -6,8 +6,10 @@ const Home = () => {
 
 	return (
 		<div>
-			{currentUser && <p>Welcome back {currentUser.firstName}!</p>}
-			{!currentUser && <p>Welcome to Jobly!</p>}
+			<h1>Jobly</h1>
+			<p>All the jobs, in one convenient place.</p>
+			{currentUser && <h2>Welcome back {currentUser.firstName}!</h2>}
+			{!currentUser && <h2>Welcome to Jobly!</h2>}
 		</div>
 	);
 };

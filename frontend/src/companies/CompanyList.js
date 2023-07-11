@@ -36,8 +36,10 @@ const CompanyList = () => {
 		let response;
 		if (name) {
 			response = await JoblyApi.getCompanies(name);
+			console.log("response", response);
 		} else {
 			response = await JoblyApi.getAllCompanies();
+			console.log("response", response);
 		}
 		let companiesFromApi = response ? response : []; // This line is modified.
 		// Adjust it as per your actual API response structure.
@@ -50,19 +52,16 @@ const CompanyList = () => {
 		setCompanies(companiesFromApi);
 	};
 
-	if (error) {
-		return (
-			<Alert
-				msg={error}
-				color="failure"
-			/>
-		);
-	}
-
 	if (!companies) return <LoadingSpinner />;
 
 	return (
 		<div className="CompanyList">
+			{error && (
+				<Alert
+					msg={error}
+					color="failure"
+				/>
+			)}
 			<Search searchFor={search} />{" "}
 			{/* Render the Search component with the searchFor prop set to the search function */}
 			<div>

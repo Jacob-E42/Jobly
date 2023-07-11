@@ -11,25 +11,53 @@ const CompanyList = () => {
 	console.debug("CompanyList"); // Debugging statement to log "CompanyList"
 
 	const [companies, setCompanies] = useState([]); // State to store the list of companies
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		search();
 	}, []);
 
+	// const search = async name => {
+	// 	// Perform a search for companies with the provided name
+	// 	let companiesFromApi;
+	// 	if (name) {
+	// 		companiesFromApi = await JoblyApi.getCompanies(name);
+	// 	} else {
+	// 		companiesFromApi = await JoblyApi.getAllCompanies();
+	// 	}
+	// 	if (companiesFromApi.length === 0) {
+	// 		setError("There are no companies");
+	// 		return;
+	// 	}
+	// 	setCompanies(companiesFromApi);
+	// };
 	const search = async name => {
 		// Perform a search for companies with the provided name
-		let companies;
-		if (name) companies = await JoblyApi.getCompanies(name);
-		else companies = await JoblyApi.getAllCompanies();
-		if (companies.length === 0)
-			return (
-				<Alert
-					msg="There are no companies"
-					color="failure"
-				/>
-			);
-		setCompanies(companies);
+		let response;
+		if (name) {
+			response = await JoblyApi.getCompanies(name);
+		} else {
+			response = await JoblyApi.getAllCompanies();
+		}
+		let companiesFromApi = response ? response : []; // This line is modified.
+		// Adjust it as per your actual API response structure.
+		// 'data' is used assuming you're getting an object with a 'data' field containing the array.
+
+		if (companiesFromApi.length === 0) {
+			setError("There are no companies");
+			return;
+		}
+		setCompanies(companiesFromApi);
 	};
+
+	if (error) {
+		return (
+			<Alert
+				msg={error}
+				color="failure"
+			/>
+		);
+	}
 
 	if (!companies) return <LoadingSpinner />;
 

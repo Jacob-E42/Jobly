@@ -1,31 +1,35 @@
 nav {
-	background-color: whitesmoke;
+	background-color: #f8f9fa; /* lighter shade of grey */
 	height: 3rem;
-	vertical-align: middle;
+	display: flex; /* This will arrange your nav items in a row */
+	align-items: center; /* This will vertically align your items */
+	justify-content: space-around; /* This will give space between your items */
+	padding: 0 1rem; /* Some padding on the sides */
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); /* This will give a slight shadow effect */
 }
 
-a {
-	text-align: right;
-	color: black;
+nav a {
+	color: #333; /* Darker text */
 	font-size: 1rem;
 	text-decoration: none;
-	margin: 5px;
+	margin: 0 1rem; /* Equal margin on both sides */
+}
+
+nav a:hover,
+nav button.link-button:hover {
+	color: #007bff; /* Change the color to whatever you prefer when hovered */
 }
 
 .home {
-	text-align: left;
 	font-weight: bold;
 }
 
 button.link-button {
-	text-align: right;
-	color: black;
+	color: #333; /* Darker text */
 	font-size: 1rem;
 	text-decoration: none;
-	margin: 5px;
 	background: none !important;
 	border: none;
 	padding: 0 !important;
-
 	cursor: pointer;
 }

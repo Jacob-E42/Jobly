@@ -1,5 +1,4 @@
 import { useEffect, useCallback } from "react";
-import "./App.css";
 import UserContext from "./UserContext";
 import ApplicationsContext from "./ApplicationsContext";
 import JoblyApi from "./api/api";

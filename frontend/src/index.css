@@ -3,6 +3,9 @@
 body {
 	background-color: #f8f8f8;
 	background: url(http://joelburton-jobly.surge.sh/static/media/background.6549e727ece768243a0f.png);
+	background-attachment: fixed;
+	background-position: 50%;
+	background-repeat: no-repeat;
 	background-size: cover;
 	margin: 0;
 	padding: 0 0 30px 0;

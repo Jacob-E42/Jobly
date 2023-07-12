@@ -20,11 +20,7 @@ const Nav = () => {
 	);
 	return (
 		<nav className="Nav">
-			<NavLink
-				className="home"
-				to="/">
-				Jobly
-			</NavLink>
+			<NavLink to="/">Jobly</NavLink>
 			<NavLink to="/companies">Companies</NavLink>
 			<NavLink to="/jobs">Jobs</NavLink>
 			{!currentUser && (

@@ -1,5 +1,11 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
 body {
+	background-color: #f8f8f8;
+	background: url(http://joelburton-jobly.surge.sh/static/media/background.6549e727ece768243a0f.png);
+	background-size: cover;
 	margin: 0;
+	padding: 0 0 30px 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
 		"Droid Sans", "Helvetica Neue", sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -9,6 +15,17 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+	box-shadow: none !important;
+}
+
+/* label {
+	font-weight: bold;
+} */
 
 .App {
 	text-align: center;

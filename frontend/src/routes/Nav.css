@@ -20,10 +20,6 @@ nav button.link-button:hover {
 	color: #007bff; /* Change the color to whatever you prefer when hovered */
 }
 
-.home {
-	font-weight: bold;
-}
-
 button.link-button {
 	color: #333; /* Darker text */
 	font-size: 1rem;

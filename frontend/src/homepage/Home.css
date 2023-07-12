@@ -1,0 +1,8 @@
+.home {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: calc(100vh - 3rem); /* 100vh is the full height of the viewport, subtracting the navbar height */
+	color: white;
+	text-shadow: 2px 2px 5px #34302f;
+}

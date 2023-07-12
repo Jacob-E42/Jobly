@@ -37,7 +37,7 @@ const RouterComponent = () => {
 	return (
 		<>
 			<Nav />
-			<Routes>
+			<Routes className="pt-5">
 				<Route
 					exact
 					path={"/"}

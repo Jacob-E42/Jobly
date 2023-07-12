@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
-import { Form, Input, Button } from "reactstrap";
+import { Form, Input, Button, FormGroup, InputGroup } from "reactstrap";
+import "../companies/Companies.css";
 
 const Search = ({ searchFor }) => {
 	// State to store the search term
@@ -29,15 +30,21 @@ const Search = ({ searchFor }) => {
 
 	return (
 		<Form onSubmit={handleSubmit}>
-			<Input
-				placeholder="Enter a Search Term..."
-				id="searchTerm"
-				name="searchTerm"
-				type="text"
-				value={searchTerm}
-				onChange={handleChange}
-			/>
-			<Button type="submit">Submit</Button>
+			<InputGroup>
+				<Input
+					placeholder="Enter a Search Term..."
+					id="searchTerm"
+					name="searchTerm"
+					type="text"
+					value={searchTerm}
+					onChange={handleChange}
+				/>
+				<Button
+					type="submit"
+					color="primary">
+					Submit
+				</Button>
+			</InputGroup>
 		</Form>
 	);
 };

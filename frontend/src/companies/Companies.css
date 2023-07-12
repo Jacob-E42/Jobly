@@ -1,8 +1,14 @@
+.searchForm {
+	display: inline-block;
+}
+
 .CompanyList {
 	/* text-align: center; */
 	display: inline-block;
+	color: green;
 }
 
 .Card {
 	border: solid black 2px;
+	text-decoration: none;
 }

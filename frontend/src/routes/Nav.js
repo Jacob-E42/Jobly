@@ -19,7 +19,7 @@ const Nav = () => {
 		[logout, navigate]
 	);
 	return (
-		<nav className="Nav">
+		<nav className="nav">
 			<NavLink to="/">Jobly</NavLink>
 			<NavLink to="/companies">Companies</NavLink>
 			<NavLink to="/jobs">Jobs</NavLink>

@@ -1,4 +1,4 @@
-nav {
+.nav {
 	background-color: #f8f9fa; /* lighter shade of grey */
 	height: 3rem;
 	display: flex; /* This will arrange your nav items in a row */

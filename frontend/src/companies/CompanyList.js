@@ -1,3 +1,4 @@
+import "./Companies.css";
 import React, { useEffect, useState } from "react";
 import Search from "../common/Search";
 import { Link } from "react-router-dom";
@@ -5,7 +6,6 @@ import JoblyApi from "../api/api";
 import CompanyCard from "./CompanyCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import Alert from "../common/Alert";
-import "./Companies.css";
 
 const CompanyList = () => {
 	console.debug("CompanyList"); // Debugging statement to log "CompanyList"
@@ -76,6 +76,7 @@ const CompanyList = () => {
 								name={c.name}
 								desc={c.description}
 								logo={c.logo_url}
+								className="Card"
 							/>{" "}
 							{/* Render the CompanyCard component with company details */}
 						</Link>

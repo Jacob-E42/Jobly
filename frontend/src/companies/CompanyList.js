@@ -17,20 +17,6 @@ const CompanyList = () => {
 		search();
 	}, []);
 
-	// const search = async name => {
-	// 	// Perform a search for companies with the provided name
-	// 	let companiesFromApi;
-	// 	if (name) {
-	// 		companiesFromApi = await JoblyApi.getCompanies(name);
-	// 	} else {
-	// 		companiesFromApi = await JoblyApi.getAllCompanies();
-	// 	}
-	// 	if (companiesFromApi.length === 0) {
-	// 		setError("There are no companies");
-	// 		return;
-	// 	}
-	// 	setCompanies(companiesFromApi);
-	// };
 	const search = async name => {
 		// Perform a search for companies with the provided name
 		let response;
@@ -68,20 +54,19 @@ const CompanyList = () => {
 				{companies.map(c => {
 					return (
 						<Link
+							className="router-link"
 							key={c.handle}
-							to={`/companies/${c.handle}`} // Link to the company detail page
-						>
+							to={`/companies/${c.handle}`}>
 							<CompanyCard
 								key={c.handle}
 								name={c.name}
 								desc={c.description}
 								logo={c.logo_url}
-								className="Card"
-							/>{" "}
-							{/* Render the CompanyCard component with company details */}
+							/>
 						</Link>
 					);
 				})}
+				;
 			</div>
 		</div>
 	);

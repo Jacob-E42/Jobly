@@ -1,14 +1,15 @@
-.searchForm {
-	display: inline-block;
+.router-link {
+	color: black;
+	text-decoration: none;
+	background: initial;
+	font-size: initial;
 }
 
 .CompanyList {
-	/* text-align: center; */
 	display: inline-block;
-	color: green;
 }
 
-.Card {
+/* .Card {
 	border: solid black 2px;
 	text-decoration: none;
-}
+} */

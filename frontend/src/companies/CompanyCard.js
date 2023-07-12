@@ -1,12 +1,13 @@
 import React from "react";
 import { Card, CardTitle, CardText, CardBody } from "reactstrap";
+// import { Link } from "react-router-dom";
+import "./Companies.css";
 
-const CompanyCard = ({ name, desc, logo }) => {
+const CompanyCard = ({ name, desc, logo, Link }) => {
 	return (
 		// Render a Card component
+
 		<Card
-			className="my-2 Card"
-			color="dark"
 			outline
 			style={{
 				width: "18rem"

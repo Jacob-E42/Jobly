@@ -52,6 +52,7 @@ const CompanyList = () => {
 			{/* Render the Search component with the searchFor prop set to the search function */}
 			<div className="CompanyCardGroup">
 				{companies.map(c => {
+					console.log(companies);
 					return (
 						<Link
 							className="router-link CompanyCard card"
@@ -61,7 +62,7 @@ const CompanyList = () => {
 								key={c.handle}
 								name={c.name}
 								desc={c.description}
-								logo={c.logo_url}
+								logoUrl={c.logoUrl}
 							/>
 						</Link>
 					);

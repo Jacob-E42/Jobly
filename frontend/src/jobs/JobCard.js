@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import addCommas from "./addCommas";
-import "./Jobs.css";
 import UserContext from "../UserContext";
 import ApplicationsContext from "../ApplicationsContext";
+import "./Jobs.css";
 
 const JobCard = ({ job }) => {
 	if (!job) throw new Error("You must provide a job!");
@@ -23,30 +23,25 @@ const JobCard = ({ job }) => {
 	};
 
 	return (
-		<Card
-			className="my-2 Card"
-			color="dark"
-			outline
-			style={{ width: "18rem" }}>
+		<Card className="JobCard">
 			{job && (
-				<CardBody className="d-flex flex-column">
+				<CardBody>
 					<CardTitle tag="h5">{job.title}</CardTitle>
-					<CardText className="mb-auto">
-						<span>Salary: {job.salary ? addCommas(job.salary) : "N/A"}</span>
-						<span>Equity: {job.equity ? job.equity : 0}</span>
+					<CardText>
+						<span className="fw-bold">Salary: {job.salary ? addCommas(job.salary) : "N/A"}</span>
+						<br />
+						<span className="fw-bold">Equity: {job.equity ? job.equity : 0}</span>
 					</CardText>
 					{!applied ? (
 						<Button
 							color="danger"
-							onClick={handleApply}
-							className="mt-auto">
+							onClick={handleApply}>
 							Apply
 						</Button>
 					) : (
 						<Button
 							color="secondary"
-							disabled
-							className="mt-auto">
+							disabled>
 							Applied
 						</Button>
 					)}

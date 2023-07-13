@@ -1,17 +1,13 @@
 import React from "react";
 import { Card, CardTitle, CardText, CardBody } from "reactstrap";
-// import { Link } from "react-router-dom";
+import logo1 from "../logos/logo1.png";
 import "./Companies.css";
 
-const CompanyCard = ({ name, desc, logo, Link }) => {
+const CompanyCard = ({ name, desc, logo }) => {
 	return (
 		// Render a Card component
 
-		<Card
-			outline
-			style={{
-				width: "18rem"
-			}}>
+		<Card>
 			<CardBody>
 				{/* Render the card title with the company name*/}
 				<CardTitle tag="h5">{name}</CardTitle>

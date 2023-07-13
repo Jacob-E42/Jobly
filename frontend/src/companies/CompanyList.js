@@ -41,7 +41,7 @@ const CompanyList = () => {
 	if (!companies) return <LoadingSpinner />;
 
 	return (
-		<div className="CompanyList">
+		<div className="CompanyList col-md-8 offset-md-2">
 			{error && (
 				<Alert
 					msg={error}
@@ -50,11 +50,11 @@ const CompanyList = () => {
 			)}
 			<Search searchFor={search} />{" "}
 			{/* Render the Search component with the searchFor prop set to the search function */}
-			<div>
+			<div className="CompanyCardGroup">
 				{companies.map(c => {
 					return (
 						<Link
-							className="router-link"
+							className="router-link CompanyCard card"
 							key={c.handle}
 							to={`/companies/${c.handle}`}>
 							<CompanyCard

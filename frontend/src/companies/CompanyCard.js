@@ -27,7 +27,7 @@ const CompanyCard = ({ name, desc, logoUrl }) => {
 				<CardText>{desc}</CardText>
 				{/* Render the company logo */}
 				<CardImg
-					bottom
+					className="card-image"
 					src={logos[logoUrl]}
 					alt={name}
 				/>

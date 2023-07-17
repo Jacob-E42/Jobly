@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import JoblyApi from "../api/api";
 import Search from "../common/Search";
 import JobCardList from "./JobCardList";
-import { Container, Row, Col } from "reactstrap";
 import "./Jobs.css";
 import AlertContext from "../context_providers/AlertContext";
 
@@ -25,16 +24,11 @@ const JobList = () => {
 	};
 
 	return (
-		<Container className="JobList ">
-			<Row>
-				<Search
-					searchFor={search}
-					className="searchForm"
-				/>
+		<section className="JobList ">
+			<Search searchFor={search} />
 
-				<JobCardList jobs={jobs} />
-			</Row>
-		</Container>
+			<JobCardList jobs={jobs} />
+		</section>
 	);
 };
 

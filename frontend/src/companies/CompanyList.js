@@ -48,10 +48,7 @@ const CompanyList = () => {
 					color="failure"
 				/>
 			)}
-			<Search
-				searchFor={search}
-				id="searchForm"
-			/>{" "}
+			<Search searchFor={search} />{" "}
 			{/* Render the Search component with the searchFor prop set to the search function */}
 			<div className="CompanyCardGroup">
 				{companies.map(c => {

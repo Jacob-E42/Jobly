@@ -29,7 +29,9 @@ const Search = ({ searchFor }) => {
 	);
 
 	return (
-		<Form onSubmit={handleSubmit}>
+		<Form
+			onSubmit={handleSubmit}
+			className="search-form">
 			<InputGroup>
 				<Input
 					placeholder="Enter a Search Term..."

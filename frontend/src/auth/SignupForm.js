@@ -1,8 +1,9 @@
 import React, { useContext, useState, useCallback } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import UserContext from "../UserContext";
+import UserContext from "../context_providers/UserContext";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
+import AlertContext from "../context_providers/AlertContext";
 
 const SignupForm = () => {
 	// State to store form data
@@ -16,6 +17,8 @@ const SignupForm = () => {
 
 	// Access the signup function from the UserContext
 	const { signup } = useContext(UserContext);
+
+	const { setMsg, setColor } = useContext(AlertContext);
 
 	// Access the navigate function from react-router-dom
 	const navigate = useNavigate();
@@ -36,6 +39,8 @@ const SignupForm = () => {
 			try {
 				// Call the signup function with the form data
 				await signup(form);
+				setColor("success");
+				setMsg("Thanks for signing up!");
 				// Navigate to the "/profile" page after successful signup
 				navigate("/");
 			} catch (error) {

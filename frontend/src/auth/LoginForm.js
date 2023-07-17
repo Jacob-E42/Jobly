@@ -1,8 +1,9 @@
 import React, { useContext, useState, useCallback } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import UserContext from "../UserContext";
+import UserContext from "../context_providers/UserContext";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
+import AlertContext from "../context_providers/AlertContext";
 
 const LoginForm = () => {
 	// State to store form data
@@ -36,6 +37,7 @@ const LoginForm = () => {
 			try {
 				// Call the login function with the username and password from the form
 				await login(form.username, form.password);
+
 				// Navigate to the "/login" page after successful login
 				navigate("/");
 			} catch (error) {

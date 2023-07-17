@@ -29,8 +29,6 @@ const CompanyList = () => {
 			console.log("response", response);
 		}
 		let companiesFromApi = response ? response : []; // This line is modified.
-		// Adjust it as per your actual API response structure.
-		// 'data' is used assuming you're getting an object with a 'data' field containing the array.
 
 		if (companiesFromApi.length === 0) {
 			setMsg("There are no companies with that search term.");

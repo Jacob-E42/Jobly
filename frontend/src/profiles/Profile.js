@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../UserContext";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import "./Profile.css";
 
 const Profile = () => {
 	const { currentUser, updateCurrentUser } = useContext(UserContext);
@@ -37,10 +38,12 @@ const Profile = () => {
 	};
 
 	return (
-		<div>
+		<>
 			{currentUser && (
-				<Form onSubmit={handleSubmit}>
-					<FormGroup>
+				<Form
+					onSubmit={handleSubmit}
+					className="profile-container">
+					<FormGroup className="profile-item">
 						<Label for="firstName">First Name</Label>
 						<Input
 							type="text"
@@ -50,7 +53,7 @@ const Profile = () => {
 							onChange={handleChange}
 						/>
 					</FormGroup>
-					<FormGroup>
+					<FormGroup className="profile-item">
 						<Label for="lastName">Last Name</Label>
 						<Input
 							type="text"
@@ -60,7 +63,7 @@ const Profile = () => {
 							onChange={handleChange}
 						/>
 					</FormGroup>
-					<FormGroup>
+					<FormGroup className="profile-item">
 						<Label for="email">Email</Label>
 						<Input
 							type="email"
@@ -70,7 +73,7 @@ const Profile = () => {
 							onChange={handleChange}
 						/>
 					</FormGroup>
-					<FormGroup>
+					<FormGroup className="profile-item">
 						<Label for="password">Password</Label>
 						<Input
 							type="password"
@@ -82,10 +85,14 @@ const Profile = () => {
 						/>
 					</FormGroup>
 
-					<Button type="submit">Submit</Button>
+					<Button
+						type="submit"
+						color="primary">
+						Submit
+					</Button>
 				</Form>
 			)}
-		</div>
+		</>
 	);
 };
 

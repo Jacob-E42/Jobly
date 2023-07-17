@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import addCommas from "./addCommas";
-import UserContext from "../UserContext";
-import ApplicationsContext from "../ApplicationsContext";
+import UserContext from "../context_providers/UserContext";
+import ApplicationsContext from "../context_providers/ApplicationsContext";
 import "./Jobs.css";
 
 const JobCard = ({ job }) => {

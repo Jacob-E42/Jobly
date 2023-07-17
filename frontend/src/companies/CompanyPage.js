@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import LoadingSpinner from "../common/LoadingSpinner";
 import JoblyApi from "../api/api";
 import JobCardList from "../jobs/JobCardList";
-import { Container, Row, Col } from "reactstrap";
+import { Card, CardTitle, CardSubtitle, CardBody } from "reactstrap";
 import "../jobs/Jobs.css";
 
 const CompanyPage = () => {
@@ -24,8 +24,11 @@ const CompanyPage = () => {
 
 	return (
 		<section className="JobList">
-			<h4>{company.name}</h4>
-			<p>{company.description}</p>
+			<p className="company-header">
+				{" "}
+				<h4>{company.name}</h4>
+				<h6>{company.description}</h6>
+			</p>
 
 			<JobCardList jobs={company.jobs} />
 		</section>

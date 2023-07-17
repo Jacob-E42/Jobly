@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import LoadingSpinner from "../common/LoadingSpinner";
 import JoblyApi from "../api/api";
 import JobCardList from "../jobs/JobCardList";
-import { Card, CardTitle, CardSubtitle, CardBody } from "reactstrap";
 import "../jobs/Jobs.css";
 
 const CompanyPage = () => {

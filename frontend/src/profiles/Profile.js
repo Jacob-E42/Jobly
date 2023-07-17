@@ -33,6 +33,8 @@ const Profile = () => {
 		try {
 			// Update the current user details
 			await updateCurrentUser(form);
+			setMsg("Your information has been updated");
+			setColor("success");
 		} catch (error) {
 			// Log any errors that occur during the update
 			console.log(error);

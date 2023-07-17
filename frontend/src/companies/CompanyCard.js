@@ -26,11 +26,13 @@ const CompanyCard = ({ name, desc, logoUrl }) => {
 				{/* Render the card text with the company description */}
 				<CardText>{desc}</CardText>
 				{/* Render the company logo */}
-				<CardImg
-					className="card-image"
-					src={logos[logoUrl]}
-					alt={name}
-				/>
+				{logoUrl && (
+					<CardImg
+						className="card-image"
+						src={logos[logoUrl]}
+						alt={name}
+					/>
+				)}
 			</CardBody>
 		</Card>
 	);

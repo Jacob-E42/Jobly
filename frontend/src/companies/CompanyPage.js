@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../common/LoadingSpinner";
 import JoblyApi from "../api/api";
-import JobList from "../jobs/JobCardList";
+import JobCardList from "../jobs/JobCardList";
+import { Container, Row, Col } from "reactstrap";
+import "../jobs/Jobs.css";
 
 const CompanyPage = () => {
 	const { handle } = useParams(); // Get the "handle" parameter from the URL
@@ -21,11 +23,12 @@ const CompanyPage = () => {
 	if (!company) return <LoadingSpinner />; // If company data is not available, show a loading spinner
 
 	return (
-		<div>
+		<section className="JobList">
 			<h4>{company.name}</h4>
 			<p>{company.description}</p>
-			<JobList jobs={company.jobs} />
-		</div>
+
+			<JobCardList jobs={company.jobs} />
+		</section>
 	);
 };
 

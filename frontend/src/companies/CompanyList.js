@@ -41,7 +41,7 @@ const CompanyList = () => {
 	if (!companies) return <LoadingSpinner />;
 
 	return (
-		<div className="CompanyList col-md-8 offset-md-2">
+		<div className="CompanyList">
 			{error && (
 				<Alert
 					msg={error}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import JoblyApi from "../api/api";
 import Search from "../common/Search";
 import JobCardList from "./JobCardList";
+import { Container, Row, Col } from "reactstrap";
 import "./Jobs.css";
 
 const JobList = () => {
@@ -18,15 +19,16 @@ const JobList = () => {
 	};
 
 	return (
-		<div className="JobList col-md-8 offset-md-2">
-			<Search
-				searchFor={search}
-				className="searchForm"
-			/>
-			<div>
+		<Container className="JobList ">
+			<Row>
+				<Search
+					searchFor={search}
+					className="searchForm"
+				/>
+
 				<JobCardList jobs={jobs} />
-			</div>
-		</div>
+			</Row>
+		</Container>
 	);
 };
 

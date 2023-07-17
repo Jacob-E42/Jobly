@@ -2,11 +2,13 @@ import React, { useCallback, useContext } from "react";
 import { NavLink } from "react-router-dom";
 // import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../UserContext";
+import UserContext from "../context_providers/UserContext";
 import "./Nav.css";
+import AlertContext from "../context_providers/AlertContext";
 
 const Nav = () => {
 	const { currentUser, logout } = useContext(UserContext);
+	const { setMsg, setColor } = useContext(AlertContext);
 
 	let username;
 	if (currentUser) username = currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1);
@@ -17,9 +19,11 @@ const Nav = () => {
 	const handleLogout = useCallback(
 		async evt => {
 			logout();
+			setMsg("You are now logged out");
+			setColor("success");
 			navigate("/");
 		},
-		[logout, navigate]
+		[logout, navigate, setMsg, setColor]
 	);
 	return (
 		<nav className="nav">

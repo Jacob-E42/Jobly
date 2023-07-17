@@ -1,25 +1,29 @@
 .JobList {
 	border: none;
-	box-sizing: border-box;
-}
-
-h5 {
-	color: purple;
-}
-
-.JobCardList {
-	margin-top: 3rem;
+	/* box-sizing: border-box; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-.JobCard {
-	max-height: 250px;
+.company-header {
+	color: white;
+	text-shadow: 2px 2px 5px #34302f;
+}
+
+.JobCardList {
+	margin-top: 3rem;
+	width: 100%;
 	max-width: 600px;
+}
+
+.JobCard {
+	/* max-height: 250px; */
+	/* width: 100%; */
+
 	margin-bottom: 2rem;
 	margin-top: 2rem;
-	padding: 1rem;
+	/* padding: 1rem; */
 	color: inherit;
 	border-radius: 0;
 	border: none;
@@ -27,7 +31,6 @@ h5 {
 }
 
 .JobCard:hover {
-	/* <Card /> that is also <Link /> */
 	text-decoration: none;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }

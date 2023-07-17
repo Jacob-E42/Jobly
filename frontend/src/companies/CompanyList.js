@@ -1,17 +1,18 @@
 import "./Companies.css";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Search from "../common/Search";
 import { Link } from "react-router-dom";
 import JoblyApi from "../api/api";
 import CompanyCard from "./CompanyCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import Alert from "../common/Alert";
+import AlertContext from "../context_providers/AlertContext";
 
 const CompanyList = () => {
 	console.debug("CompanyList"); // Debugging statement to log "CompanyList"
 
 	const [companies, setCompanies] = useState([]); // State to store the list of companies
-	const [error, setError] = useState(null);
+	const { setMsg, setColor } = useContext(AlertContext);
 
 	useEffect(() => {
 		search();
@@ -32,8 +33,8 @@ const CompanyList = () => {
 		// 'data' is used assuming you're getting an object with a 'data' field containing the array.
 
 		if (companiesFromApi.length === 0) {
-			setError("There are no companies");
-			return;
+			setMsg("There are no companies with that search term.");
+			setColor("danger");
 		}
 		setCompanies(companiesFromApi);
 	};
@@ -42,12 +43,6 @@ const CompanyList = () => {
 
 	return (
 		<div className="CompanyList">
-			{error && (
-				<Alert
-					msg={error}
-					color="failure"
-				/>
-			)}
 			<Search searchFor={search} />{" "}
 			{/* Render the Search component with the searchFor prop set to the search function */}
 			<div className="CompanyCardGroup">

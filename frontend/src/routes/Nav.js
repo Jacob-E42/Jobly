@@ -7,6 +7,7 @@ import "./Nav.css";
 
 const Nav = () => {
 	const { currentUser, logout } = useContext(UserContext);
+	const username = currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1);
 
 	// Access the navigate function from react-router-dom
 	const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Nav = () => {
 
 			{currentUser && (
 				<>
-					<NavLink to="/profile">{currentUser.username}</NavLink>
+					<NavLink to="/profile">{username}</NavLink>
 					<button
 						className="link-button"
 						onClick={handleLogout}>

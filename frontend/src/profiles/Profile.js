@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
-import UserContext from "../UserContext";
+import UserContext from "../context_providers/UserContext";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Profile.css";
+import AlertContext from "../context_providers/AlertContext";
 
 const Profile = () => {
 	const { currentUser, updateCurrentUser } = useContext(UserContext);
+	const { setMsg, setColor } = useContext(AlertContext);
 
 	// State to store form data
 	const [form, setForm] = useState({

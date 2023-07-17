@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import UserContext from "../UserContext";
+import UserContext from "../context_providers/UserContext";
 import "./Home.css";
 
 const Home = () => {

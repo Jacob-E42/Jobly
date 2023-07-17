@@ -1,17 +1,20 @@
-import { useEffect, useCallback } from "react";
-import UserContext from "./UserContext";
-import ApplicationsContext from "./ApplicationsContext";
+import { useEffect, useCallback, useState } from "react";
+import UserContext from "./context_providers/UserContext";
+import ApplicationsContext from "./context_providers/ApplicationsContext";
 import JoblyApi from "./api/api";
 import RouterComponent from "./routes/Router";
 import jwtDecode from "jwt-decode";
 import { BrowserRouter } from "react-router-dom";
 import useLocalStorage from "./hooks/useLocalStorage";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AlertContext from "./context_providers/AlertContext";
 
 function App() {
 	const [token, setToken] = useLocalStorage("token", null);
 	const [currentUser, setCurrentUser] = useLocalStorage("currentUser", null);
 	const [applications, setApplications] = useLocalStorage("applications", []);
+	const [msg, setMsg] = useState("");
+	const [color, setColor] = useState("primary");
 	console.log("token", token, "currentuser", currentUser, "applications", applications);
 
 	useEffect(
@@ -107,9 +110,11 @@ function App() {
 		<BrowserRouter>
 			<UserContext.Provider value={{ currentUser, login, logout, signup, updateCurrentUser }}>
 				<ApplicationsContext.Provider value={{ applications, apply }}>
-					<div className="App">
-						<RouterComponent />
-					</div>
+					<AlertContext.Provider value={{ msg, setMsg, color, setColor }}>
+						<div className="App">
+							<RouterComponent />
+						</div>
+					</AlertContext.Provider>
 				</ApplicationsContext.Provider>
 			</UserContext.Provider>
 		</BrowserRouter>

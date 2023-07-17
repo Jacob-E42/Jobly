@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-
 import Home from "../homepage/Home";
 import CompanyList from "../companies/CompanyList";
 import CompanyPage from "../companies/CompanyPage";
@@ -9,24 +8,25 @@ import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 import Profile from "../profiles/Profile";
 import Nav from "./Nav";
-import Alert from "../common/Alert";
-import UserContext from "../UserContext";
+import AlertExample from "../common/Alert";
+import UserContext from "../context_providers/UserContext";
+import AlertContext from "../context_providers/AlertContext";
 
 const ProtectedRoute = ({ children }) => {
 	const { currentUser } = useContext(UserContext);
+	const { setMsg, setColor } = useContext(AlertContext);
+
 	console.log(currentUser);
 
 	if (currentUser) return children;
 	else {
+		setColor("danger");
+		setMsg("You must be logged in to access this page.");
 		return (
 			<>
 				<Navigate
 					to="/login"
 					replace={true}
-				/>
-				<Alert
-					msg="You need to be logged in to access this page"
-					color="failure"
 				/>
 			</>
 		);
@@ -34,9 +34,18 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const RouterComponent = () => {
+	const { msg, color } = useContext(AlertContext);
+	console.debug("msg", msg, "color:", color);
+
 	return (
 		<>
 			<Nav />
+			{msg && (
+				<AlertExample
+					msg={msg}
+					color={color}
+				/>
+			)}
 			<Routes className="pt-5">
 				<Route
 					exact

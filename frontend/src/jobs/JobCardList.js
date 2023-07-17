@@ -1,6 +1,5 @@
 import React from "react";
 import JobCard from "./JobCard";
-import { Col } from "reactstrap";
 import "./Jobs.css";
 
 const JobCardList = ({ jobs }) => {

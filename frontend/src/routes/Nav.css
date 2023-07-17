@@ -3,7 +3,7 @@
 	height: 3rem;
 	display: flex; /* This will arrange your nav items in a row */
 	align-items: center; /* This will vertically align your items */
-	justify-content: space-around; /* This will give space between your items */
+	justify-content: space-evenly; /* This will give space between your items */
 	padding: 0 1rem; /* Some padding on the sides */
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); /* This will give a slight shadow effect */
 }

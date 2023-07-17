@@ -1,17 +1,22 @@
-import React, { useState } from "react";
-import { Alert as Al } from "reactstrap";
+import React, { useContext, useState } from "react";
+import { Alert } from "reactstrap";
+import AlertContext from "../context_providers/AlertContext";
 
-function Alert({ msg, color = "success" }) {
+function AlertExample({ msg, color = "success" }) {
+	const { setMsg } = useContext(AlertContext);
 	console.debug("Alert", "messages=", msg, "color=", color);
 
 	// State to control the visibility of the alert message
 	const [visible, setVisible] = useState(true);
 
 	// Function to dismiss the alert message
-	const onDismiss = () => setVisible(false);
+	const onDismiss = () => {
+		setVisible(false);
+		setMsg("");
+	};
 
 	return (
-		<Al
+		<Alert
 			// Set the color of the alert message
 			color={color}
 			// Specify if the alert is visible or hidden
@@ -19,35 +24,8 @@ function Alert({ msg, color = "success" }) {
 			// Function to toggle the visibility of the alert
 			toggle={onDismiss}>
 			{msg}
-		</Al>
+		</Alert>
 	);
 }
 
-export default Alert;
-
-// import React from "react";
-
-// /** Presentational component for showing bootstrap-style alerts.
-//  *
-//  * { LoginForm, SignupForm, ProfileForm } -> Alert
-//  **/
-
-// function Alert({ type = "danger", messages = [] }) {
-// 	console.debug("Alert", "type=", type, "messages=", messages);
-
-// 	return (
-// 		<div
-// 			className={`alert alert-${type}`}
-// 			role="alert">
-// 			{messages.map(error => (
-// 				<p
-// 					className="mb-0 small"
-// 					key={error}>
-// 					{error}
-// 				</p>
-// 			))}
-// 		</div>
-// 	);
-// }
-
-// export default Alert;
+export default AlertExample;

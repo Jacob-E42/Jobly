@@ -2,6 +2,7 @@ import React, { useContext, useState, useCallback } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import UserContext from "../UserContext";
 import { useNavigate } from "react-router-dom";
+import "./Auth.css";
 
 const LoginForm = () => {
 	// State to store form data
@@ -46,8 +47,10 @@ const LoginForm = () => {
 	);
 
 	return (
-		<Form onSubmit={handleSubmit}>
-			<FormGroup>
+		<Form
+			onSubmit={handleSubmit}
+			className="form-container">
+			<FormGroup className="form-item">
 				<Label for="username">Username</Label>
 				<Input
 					type="text"
@@ -58,7 +61,7 @@ const LoginForm = () => {
 					placeholder="Enter your username"
 				/>
 			</FormGroup>
-			<FormGroup>
+			<FormGroup className="form-item">
 				<Label for="password">Password</Label>
 				<Input
 					type="password"

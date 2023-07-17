@@ -2,6 +2,7 @@ import React, { useContext, useState, useCallback } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import UserContext from "../UserContext";
 import { useNavigate } from "react-router-dom";
+import "./Auth.css";
 
 const SignupForm = () => {
 	// State to store form data
@@ -46,8 +47,10 @@ const SignupForm = () => {
 	); // depends on form, signup, and navigate
 
 	return (
-		<Form onSubmit={handleSubmit}>
-			<FormGroup>
+		<Form
+			onSubmit={handleSubmit}
+			className="form-container">
+			<FormGroup className="form-item">
 				<Label for="username">Username</Label>
 				<Input
 					type="text"
@@ -58,7 +61,7 @@ const SignupForm = () => {
 					placeholder="Enter your username"
 				/>
 			</FormGroup>
-			<FormGroup>
+			<FormGroup className="form-item">
 				<Label for="password">Password</Label>
 				<Input
 					type="password"
@@ -69,7 +72,7 @@ const SignupForm = () => {
 					placeholder="Enter your password"
 				/>
 			</FormGroup>
-			<FormGroup>
+			<FormGroup className="form-item">
 				<Label for="firstName">First Name</Label>
 				<Input
 					type="text"
@@ -80,7 +83,7 @@ const SignupForm = () => {
 					placeholder="Enter your first name"
 				/>
 			</FormGroup>
-			<FormGroup>
+			<FormGroup className="form-item">
 				<Label for="lastName">Last Name</Label>
 				<Input
 					type="text"
@@ -91,7 +94,7 @@ const SignupForm = () => {
 					placeholder="Enter your last name"
 				/>
 			</FormGroup>
-			<FormGroup>
+			<FormGroup className="form-item">
 				<Label for="email">Email</Label>
 				<Input
 					type="email"

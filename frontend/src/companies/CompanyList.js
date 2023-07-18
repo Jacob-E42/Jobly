@@ -48,7 +48,7 @@ const CompanyList = () => {
 					console.log(companies);
 					return (
 						<Link
-							className="router-link CompanyCard card"
+							className="router-link "
 							key={c.handle}
 							to={`/companies/${c.handle}`}>
 							<CompanyCard

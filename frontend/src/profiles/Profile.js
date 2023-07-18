@@ -3,29 +3,20 @@ import UserContext from "../context_providers/UserContext";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Profile.css";
 import AlertContext from "../context_providers/AlertContext";
+import useForm from "../hooks/useForm";
 
 const Profile = () => {
 	const { currentUser, updateCurrentUser } = useContext(UserContext);
 	const { setMsg, setColor } = useContext(AlertContext);
 
 	// State to store form data
-	const [form, setForm] = useState({
+	const [form, handleChange] = useForm({
 		username: currentUser.username,
 		firstName: currentUser.firstName,
 		lastName: currentUser.lastName,
 		email: currentUser.email,
 		password: currentUser.password
 	});
-
-	// Handle input change
-	const handleChange = event => {
-		// Update the form state with the new input value
-		setForm({
-			...form,
-			[event.target.name]: event.target.value
-		});
-		console.log(form);
-	};
 
 	// Handle form submission
 	const handleSubmit = async event => {

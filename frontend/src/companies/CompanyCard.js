@@ -4,7 +4,6 @@ import logo1 from "../logos/logo1.png";
 import logo2 from "../logos/logo2.png";
 import logo3 from "../logos/logo3.png";
 import logo4 from "../logos/logo4.png";
-
 import "./Companies.css";
 
 const CompanyCard = ({ name, desc, logoUrl }) => {
@@ -19,21 +18,21 @@ const CompanyCard = ({ name, desc, logoUrl }) => {
 	return (
 		// Render a Card component
 
-		<Card>
+		<Card className="CompanyCard">
 			<CardBody>
 				{/* Render the card title with the company name*/}
 				<CardTitle tag="h5">{name}</CardTitle>
 				{/* Render the card text with the company description */}
 				<CardText>{desc}</CardText>
-				{/* Render the company logo */}
-				{logoUrl && (
-					<CardImg
-						className="card-image"
-						src={logos[logoUrl]}
-						alt={name}
-					/>
-				)}
 			</CardBody>
+			{/* Render the company logo */}
+			{logoUrl && (
+				<img
+					className="card-image ml-5"
+					src={logos[logoUrl]}
+					alt={name}
+				/>
+			)}
 		</Card>
 	);
 };

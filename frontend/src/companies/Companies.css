@@ -24,6 +24,7 @@
 }
 
 .CompanyCard {
+	flex-direction: row;
 	text-align: left;
 	margin-bottom: 2rem;
 	margin-top: 2rem;
@@ -39,8 +40,8 @@
 
 .card-image {
 	flex-basis: 200px;
-	max-height: 80px;
 	max-width: 170px;
+	height: auto;
 }
 
 .CompanyCard:hover {

@@ -3,11 +3,12 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import UserContext from "../context_providers/UserContext";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
+import useForm from "../hooks/useForm";
 import AlertContext from "../context_providers/AlertContext";
 
 const LoginForm = () => {
 	// State to store form data
-	const [form, setForm] = useState({
+	const [form, handleChange] = useForm({
 		username: "",
 		password: ""
 	});
@@ -17,15 +18,6 @@ const LoginForm = () => {
 
 	// Access the navigate function from react-router-dom
 	const navigate = useNavigate();
-
-	// Handle input change
-	const handleChange = useCallback(event => {
-		// Update the form state with the new input value
-		setForm(form => ({
-			...form,
-			[event.target.name]: event.target.value
-		}));
-	}, []); // does not depend on any state or props
 
 	// Handle form submission
 	const handleSubmit = useCallback(

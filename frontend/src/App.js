@@ -8,8 +8,10 @@ import { BrowserRouter } from "react-router-dom";
 import useLocalStorage from "./hooks/useLocalStorage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AlertContext from "./context_providers/AlertContext";
+import LoadingSpinner from "./common/LoadingSpinner";
 
 function App() {
+	const [infoLoaded, setInfoLoaded] = useState(false);
 	const [token, setToken] = useLocalStorage("token", null);
 	const [currentUser, setCurrentUser] = useLocalStorage("currentUser", null);
 	const [applications, setApplications] = useLocalStorage("applications", []);
@@ -41,8 +43,9 @@ function App() {
 						setApplications([]);
 					}
 				}
+				setInfoLoaded(true);
 			}
-
+			setInfoLoaded(false);
 			getCurrentUser();
 		},
 		[token, setApplications, setCurrentUser]
@@ -105,6 +108,8 @@ function App() {
 		},
 		[setApplications]
 	);
+
+	if (!infoLoaded) return <LoadingSpinner />;
 
 	return (
 		<BrowserRouter>

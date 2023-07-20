@@ -4,6 +4,7 @@ import Search from "../common/Search";
 import JobCardList from "./JobCardList";
 import "./Jobs.css";
 import AlertContext from "../context_providers/AlertContext";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 const JobList = () => {
 	console.debug("JobList");
@@ -22,6 +23,8 @@ const JobList = () => {
 		}
 		setJobs(jobs);
 	};
+
+	if (!jobs) return <LoadingSpinner />;
 
 	return (
 		<section className="JobList ">

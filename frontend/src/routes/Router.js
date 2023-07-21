@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../homepage/Home";
 import CompanyList from "../companies/CompanyList";
 import CompanyPage from "../companies/CompanyPage";
-import JobsPage from "../jobs/JobList";
+import JobList from "../jobs/JobList";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 import Profile from "../profiles/Profile";
@@ -75,7 +75,7 @@ const RouterComponent = () => {
 					path={"/jobs"}
 					element={
 						<ProtectedRoute>
-							<JobsPage />
+							<JobList />
 						</ProtectedRoute>
 					}
 				/>

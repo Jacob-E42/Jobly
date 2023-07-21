@@ -3,7 +3,7 @@ import JoblyApi from "../api/api";
 import React from "react";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { UserProvider } from "../mock";
+import { AlertProvider, UserProvider } from "../mock";
 import CompanyList from "./CompanyList";
 
 // rest of your tests
@@ -12,7 +12,9 @@ test("CompanyList renders without crashing", () => {
 	render(
 		<MemoryRouter>
 			<UserProvider>
-				<CompanyList />
+				<AlertProvider>
+					<CompanyList />
+				</AlertProvider>
 			</UserProvider>
 		</MemoryRouter>
 	);
@@ -22,7 +24,9 @@ test("CompanyList matches snapshot", () => {
 	const { asFragment } = render(
 		<MemoryRouter>
 			<UserProvider>
-				<CompanyList />
+				<AlertProvider>
+					<CompanyList />
+				</AlertProvider>
 			</UserProvider>
 		</MemoryRouter>
 	);

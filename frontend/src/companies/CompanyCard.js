@@ -17,7 +17,7 @@ const CompanyCard = ({ name, desc, logoUrl }) => {
 	return (
 		// Render a Card component
 
-		<Card className="d-flex CompanyCard">
+		<Card className="CompanyCard">
 			<CardBody className="CardBody">
 				{/* Render the card title with the company name*/}
 				<CardTitle tag="h5">{name}</CardTitle>

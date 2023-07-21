@@ -24,7 +24,8 @@
 }
 
 .CompanyCard {
-	flex-direction: row;
+	display: flex;
+	flex-direction: row !important;
 	text-align: left;
 	margin-bottom: 2rem;
 	margin-top: 2rem;

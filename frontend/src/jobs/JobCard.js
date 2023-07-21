@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { Card, CardBody, CardTitle, CardText, Button } from "reactstrap";
 import addCommas from "./addCommas";
 import UserContext from "../context_providers/UserContext";
@@ -13,7 +13,7 @@ const JobCard = ({ job }) => {
 	const { apply, applications } = useContext(ApplicationsContext);
 	const [applied, setApplied] = useState(applications.includes(job.id) ? true : false);
 
-	const handleApply = async () => {
+	const handleApply = useCallback(async () => {
 		console.debug("handleApply");
 		try {
 			// if (currentUser.applications.includes(job.id))
@@ -24,7 +24,7 @@ const JobCard = ({ job }) => {
 		} catch (error) {
 			console.error(error);
 		}
-	};
+	}, [setMsg, setColor, setApplied, apply, job, currentUser]);
 
 	return (
 		<Card className="JobCard">

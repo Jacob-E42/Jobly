@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import JoblyApi from "../api/api";
 import Search from "../common/Search";
 import JobCardList from "./JobCardList";
@@ -11,18 +11,21 @@ const JobList = () => {
 	const [jobs, setJobs] = useState([]);
 	const { setMsg, setColor } = useContext(AlertContext);
 
+	const search = useCallback(
+		async title => {
+			let jobs = await JoblyApi.getJobs(title);
+			if (jobs.length === 0) {
+				setMsg("There are no jobs with that search term.");
+				setColor("danger");
+			}
+			setJobs(jobs);
+		},
+		[setMsg, setColor]
+	);
+
 	useEffect(() => {
 		search();
-	});
-
-	const search = async title => {
-		let jobs = await JoblyApi.getJobs(title);
-		if (jobs.length === 0) {
-			setMsg("There are no jobs with that search term.");
-			setColor("danger");
-		}
-		setJobs(jobs);
-	};
+	}, [search]);
 
 	if (!jobs) return <LoadingSpinner />;
 

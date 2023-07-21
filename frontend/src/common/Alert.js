@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { Alert } from "reactstrap";
 import AlertContext from "../context_providers/AlertContext";
 
@@ -10,10 +10,10 @@ function AlertExample({ msg, color = "success" }) {
 	const [visible, setVisible] = useState(true);
 
 	// Function to dismiss the alert message
-	const onDismiss = () => {
+	const onDismiss = useCallback(() => {
 		setVisible(false);
 		setMsg("");
-	};
+	}, [setVisible, setMsg]);
 
 	return (
 		<Alert

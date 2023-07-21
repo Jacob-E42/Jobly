@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import UserContext from "../context_providers/UserContext";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Profile.css";
@@ -19,18 +19,21 @@ const Profile = () => {
 	});
 
 	// Handle form submission
-	const handleSubmit = async event => {
-		event.preventDefault();
-		try {
-			// Update the current user details
-			await updateCurrentUser(form);
-			setMsg("Your information has been updated");
-			setColor("success");
-		} catch (error) {
-			// Log any errors that occur during the update
-			console.error(error);
-		}
-	};
+	const handleSubmit = useCallback(
+		async event => {
+			event.preventDefault();
+			try {
+				// Update the current user details
+				await updateCurrentUser(form);
+				setMsg("Your information has been updated");
+				setColor("success");
+			} catch (error) {
+				// Log any errors that occur during the update
+				console.error(error);
+			}
+		},
+		[updateCurrentUser, setMsg, setColor, form]
+	);
 
 	return (
 		<>

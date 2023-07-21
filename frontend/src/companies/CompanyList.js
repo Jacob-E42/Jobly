@@ -1,5 +1,5 @@
 import "./Companies.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import Search from "../common/Search";
 import { Link } from "react-router-dom";
 import JoblyApi from "../api/api";
@@ -13,26 +13,29 @@ const CompanyList = () => {
 	const [companies, setCompanies] = useState([]); // State to store the list of companies
 	const { setMsg, setColor } = useContext(AlertContext);
 
+	const search = useCallback(
+		async name => {
+			// Perform a search for companies with the provided name
+			let response;
+			if (name) {
+				response = await JoblyApi.getCompanies(name);
+			} else {
+				response = await JoblyApi.getAllCompanies();
+			}
+			let companiesFromApi = response ? response : []; // This line is modified.
+
+			if (companiesFromApi.length === 0) {
+				setMsg("There are no companies with that search term.");
+				setColor("danger");
+			}
+			setCompanies(companiesFromApi);
+		},
+		[setCompanies, setMsg, setColor]
+	);
+
 	useEffect(() => {
 		search();
-	}, []);
-
-	const search = async name => {
-		// Perform a search for companies with the provided name
-		let response;
-		if (name) {
-			response = await JoblyApi.getCompanies(name);
-		} else {
-			response = await JoblyApi.getAllCompanies();
-		}
-		let companiesFromApi = response ? response : []; // This line is modified.
-
-		if (companiesFromApi.length === 0) {
-			setMsg("There are no companies with that search term.");
-			setColor("danger");
-		}
-		setCompanies(companiesFromApi);
-	};
+	}, [search]);
 
 	if (!companies) return <LoadingSpinner />;
 

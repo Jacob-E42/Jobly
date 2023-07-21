@@ -13,7 +13,7 @@ const JobList = () => {
 
 	useEffect(() => {
 		search();
-	}, []);
+	});
 
 	const search = async title => {
 		let jobs = await JoblyApi.getJobs(title);

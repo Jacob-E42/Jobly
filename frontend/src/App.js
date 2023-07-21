@@ -17,7 +17,6 @@ function App() {
 	const [applications, setApplications] = useLocalStorage("applications", []);
 	const [msg, setMsg] = useState("");
 	const [color, setColor] = useState("primary");
-	console.log("token", token, "currentuser", currentUser, "applications", applications);
 
 	useEffect(
 		function loadUserInfo() {
@@ -68,7 +67,6 @@ function App() {
 			console.debug("signup:", "currentUser", currentUser, "token", token);
 			const { username, password, firstName, lastName, email } = data;
 			const signupToken = await JoblyApi.register(username, password, firstName, lastName, email);
-			console.log("token received", signupToken);
 			if (signupToken) {
 				setToken(signupToken);
 			}
@@ -83,7 +81,6 @@ function App() {
 			delete data.username;
 			if (!password) delete data.password;
 			const updatedUser = await JoblyApi.editCurrentUser(username, data);
-			console.log("new user", updatedUser);
 			if (updatedUser) {
 				setCurrentUser(updatedUser);
 			}
@@ -101,7 +98,6 @@ function App() {
 		async (username, jobId) => {
 			console.debug("apply", "username", username, "jobId", jobId);
 			const applied = await JoblyApi.applyToJob(username, jobId);
-			console.log(applied);
 			if (applied.applied === jobId) {
 				setApplications(applications => [...applications, jobId]);
 			}

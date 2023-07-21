@@ -16,8 +16,6 @@ const ProtectedRoute = ({ children }) => {
 	const { currentUser } = useContext(UserContext);
 	const { setMsg, setColor } = useContext(AlertContext);
 
-	console.log(currentUser);
-
 	if (currentUser) return children;
 	else {
 		setColor("danger");

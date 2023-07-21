@@ -28,7 +28,7 @@ const Profile = () => {
 			setColor("success");
 		} catch (error) {
 			// Log any errors that occur during the update
-			console.log(error);
+			console.error(error);
 		}
 	};
 

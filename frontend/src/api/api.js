@@ -82,14 +82,12 @@ class JoblyApi {
 	// Get a list of companies with names matching the provided value
 	static async getCompanies(name) {
 		let res = await this.request(`companies`, { name });
-		console.log(res.companies);
 		return res.companies;
 	}
 
 	//Get all companies
 	static async getAllCompanies() {
 		let res = await this.request("companies");
-		console.log(res.companies);
 		return res.companies;
 	}
 

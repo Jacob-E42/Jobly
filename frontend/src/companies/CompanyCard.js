@@ -7,7 +7,6 @@ import logo4 from "../logos/logo4.png";
 import "./Companies.css";
 
 const CompanyCard = ({ name, desc, logoUrl }) => {
-	console.log(logoUrl);
 	const logos = {
 		"/logos/logo1.png": logo1,
 		"/logos/logo2.png": logo2,

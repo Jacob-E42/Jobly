@@ -79,7 +79,6 @@ test("CompanyList matches snapshot", () => {
 // 			</UserProvider>
 // 		</MemoryRouter>
 // 	);
-// 	console.log(asFragment());
 // 	const h5 = screen.queryByText("Anderson");
 // 	expect(h5).toBeInTheDocument();
 // });

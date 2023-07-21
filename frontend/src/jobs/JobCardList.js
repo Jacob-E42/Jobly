@@ -4,7 +4,6 @@ import "./Jobs.css";
 
 const JobCardList = ({ jobs }) => {
 	return (
-		// <Col className=".col-sm-12 .col-md-6 .offset-md-3">
 		<main className="JobCardList">
 			{jobs &&
 				jobs.map(job => (
@@ -14,8 +13,6 @@ const JobCardList = ({ jobs }) => {
 					/>
 				))}
 		</main>
-
-		// </Col>
 	);
 };
 

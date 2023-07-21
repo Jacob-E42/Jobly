@@ -23,10 +23,8 @@ const CompanyList = () => {
 		let response;
 		if (name) {
 			response = await JoblyApi.getCompanies(name);
-			console.log("response", response);
 		} else {
 			response = await JoblyApi.getAllCompanies();
-			console.log("response", response);
 		}
 		let companiesFromApi = response ? response : []; // This line is modified.
 
@@ -45,7 +43,6 @@ const CompanyList = () => {
 			{/* Render the Search component with the searchFor prop set to the search function */}
 			<div className="CompanyCardGroup">
 				{companies.map(c => {
-					console.log(companies);
 					return (
 						<Link
 							className="router-link "

@@ -37,7 +37,7 @@ const SignupForm = () => {
 				navigate("/");
 			} catch (error) {
 				// Log any errors that occur during signup
-				console.log(error);
+				console.error(error);
 			}
 		},
 		[form, signup, navigate, setColor, setMsg]

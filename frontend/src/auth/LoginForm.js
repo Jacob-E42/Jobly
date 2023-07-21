@@ -33,7 +33,7 @@ const LoginForm = () => {
 				navigate("/");
 			} catch (error) {
 				// Log any errors that occur during login
-				console.log(error);
+				console.error(error);
 			}
 		},
 		[login, navigate, form]

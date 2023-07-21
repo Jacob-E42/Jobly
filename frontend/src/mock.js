@@ -23,7 +23,6 @@ const AnonUserProvider = ({ children }) => {
 
 	const login = useCallback(
 		async (username, password) => {
-			console.debug("login:", "currentUser", currentUser);
 			const logintoken = await JoblyApi.login(username, password);
 			if (logintoken) {
 				setCurrentUser(demoUser);
@@ -34,10 +33,8 @@ const AnonUserProvider = ({ children }) => {
 
 	const signup = useCallback(
 		async data => {
-			console.debug("signup:", "currentUser", currentUser);
 			const { username, password, firstName, lastName, email } = data;
 			const signupToken = await JoblyApi.register(username, password, firstName, lastName, email);
-			console.log("token received", signupToken);
 			if (signupToken) {
 				setCurrentUser(signupToken);
 			}
@@ -53,9 +50,7 @@ const ApplicationsProvider = ({ children }) => {
 
 	const apply = useCallback(
 		async (username, jobId) => {
-			console.debug("apply", "username", username, "jobId", jobId);
 			const applied = await JoblyApi.applyToJob(username, jobId);
-			console.log(applied);
 			if (applied.applied === jobId) {
 				setApplications(applications => [...applications, jobId]);
 			}

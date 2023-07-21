@@ -1,12 +1,14 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
-import { UserProvider, AlertProvider } from "../mock";
+import { AlertProvider } from "../mock";
 import JobList from "./JobList";
-import AlertContext from "../context_providers/AlertContext";
 
 test("JobList renders without crashing", () => {
-	render();
+	render(
+		<AlertProvider>
+			<JobList />
+		</AlertProvider>
+	);
 });
 
 test("JobList matches snapshot", () => {

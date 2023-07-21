@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { UserProvider, AnonUserProvider, ApplicationsProvider } from "../mock";
+import { UserProvider, AnonUserProvider, ApplicationsProvider, AlertProvider } from "../mock";
 import JobCardList from "./JobCardList";
 
 jest.mock("../api/api", () => ({
@@ -13,13 +13,15 @@ test("JobCardList renders without crashing", () => {
 		<MemoryRouter>
 			<UserProvider>
 				<ApplicationsProvider>
-					<JobCardList
-						jobs={[
-							{ salary: "20000", equity: ".1", title: "snowman" },
-							{ salary: "30000", equity: "0", title: "rainman" },
-							{ salary: "400000", equity: ".9", title: "corporate planner" }
-						]}
-					/>
+					<AlertProvider>
+						<JobCardList
+							jobs={[
+								{ salary: "20000", equity: ".1", title: "snowman" },
+								{ salary: "30000", equity: "0", title: "rainman" },
+								{ salary: "400000", equity: ".9", title: "corporate planner" }
+							]}
+						/>
+					</AlertProvider>
 				</ApplicationsProvider>
 			</UserProvider>
 		</MemoryRouter>
@@ -31,13 +33,15 @@ test("JobCardList matches snapshot", () => {
 		<MemoryRouter>
 			<UserProvider>
 				<ApplicationsProvider>
-					<JobCardList
-						jobs={[
-							{ salary: "20000", equity: ".1", title: "snowman" },
-							{ salary: "30000", equity: "0", title: "rainman" },
-							{ salary: "400000", equity: ".9", title: "corporate planner" }
-						]}
-					/>
+					<AlertProvider>
+						<JobCardList
+							jobs={[
+								{ salary: "20000", equity: ".1", title: "snowman" },
+								{ salary: "30000", equity: "0", title: "rainman" },
+								{ salary: "400000", equity: ".9", title: "corporate planner" }
+							]}
+						/>
+					</AlertProvider>
 				</ApplicationsProvider>
 			</UserProvider>
 		</MemoryRouter>
@@ -50,7 +54,9 @@ test("JobCardList matches snapshot without jobs", () => {
 		<MemoryRouter>
 			<UserProvider>
 				<ApplicationsProvider>
-					<JobCardList />
+					<AlertProvider>
+						<JobCardList />
+					</AlertProvider>
 				</ApplicationsProvider>
 			</UserProvider>
 		</MemoryRouter>

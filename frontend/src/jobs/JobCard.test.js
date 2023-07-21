@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { ApplicationsProvider, UserProvider } from "../mock";
+import { AlertProvider, ApplicationsProvider, UserProvider } from "../mock";
 import JobCard from "./JobCard";
 
 test("JobCard renders without crashing", () => {
@@ -9,7 +9,9 @@ test("JobCard renders without crashing", () => {
 		<MemoryRouter>
 			<UserProvider>
 				<ApplicationsProvider>
-					<JobCard job={{ salary: "20000", equity: ".1", title: "snowman", id: 1 }} />
+					<AlertProvider>
+						<JobCard job={{ salary: "20000", equity: ".1", title: "snowman", id: 1 }} />
+					</AlertProvider>
 				</ApplicationsProvider>
 			</UserProvider>
 		</MemoryRouter>
@@ -21,7 +23,9 @@ test("JobCard matches snapshot", () => {
 		<MemoryRouter>
 			<UserProvider>
 				<ApplicationsProvider>
-					<JobCard job={{ salary: "20000", equity: ".1", title: "snowman", id: 1 }} />
+					<AlertProvider>
+						<JobCard job={{ salary: "20000", equity: ".1", title: "snowman", id: 1 }} />
+					</AlertProvider>
 				</ApplicationsProvider>
 			</UserProvider>
 		</MemoryRouter>
@@ -35,7 +39,9 @@ test("JobCard throws an error when job prop is missing", () => {
 			<MemoryRouter>
 				<UserProvider>
 					<ApplicationsProvider>
-						<JobCard />
+						<AlertProvider>
+							<JobCard />
+						</AlertProvider>
 					</ApplicationsProvider>
 				</UserProvider>
 			</MemoryRouter>

@@ -1,14 +1,16 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { UserProvider } from "../mock";
+import { AlertProvider, UserProvider } from "../mock";
 import Router from "./Router";
 
 test("Router renders without crashing", () => {
 	render(
 		<MemoryRouter>
 			<UserProvider>
-				<Router />
+				<AlertProvider>
+					<Router />
+				</AlertProvider>
 			</UserProvider>
 		</MemoryRouter>
 	);
@@ -18,7 +20,9 @@ test("Router matches snapshot", () => {
 	const { asFragment } = render(
 		<MemoryRouter>
 			<UserProvider>
-				<Router />
+				<AlertProvider>
+					<Router />
+				</AlertProvider>
 			</UserProvider>
 		</MemoryRouter>
 	);

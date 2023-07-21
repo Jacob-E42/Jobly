@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useCallback } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import UserContext from "../context_providers/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +40,7 @@ const SignupForm = () => {
 				console.log(error);
 			}
 		},
-		[form, signup, navigate]
+		[form, signup, navigate, setColor, setMsg]
 	); // depends on form, signup, and navigate
 
 	return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import { UserProvider, AnonUserProvider } from "../mock";
+import { UserProvider, AnonUserProvider, AlertProvider } from "../mock";
 import { MemoryRouter } from "react-router";
 import SignupForm from "./SignupForm";
 import JoblyApi from "../api/api";
@@ -13,7 +13,9 @@ test("SignupForm renders without crashing", () => {
 	render(
 		<MemoryRouter>
 			<AnonUserProvider>
-				<SignupForm />
+				<AlertProvider>
+					<SignupForm />
+				</AlertProvider>
 			</AnonUserProvider>
 		</MemoryRouter>
 	);
@@ -23,7 +25,9 @@ test("SignupForm matches snapshot", () => {
 	const { asFragment } = render(
 		<MemoryRouter>
 			<AnonUserProvider>
-				<SignupForm />
+				<AlertProvider>
+					<SignupForm />
+				</AlertProvider>
 			</AnonUserProvider>
 		</MemoryRouter>
 	);
@@ -34,7 +38,9 @@ test("SignupForm displays required inputs", () => {
 	render(
 		<MemoryRouter>
 			<AnonUserProvider>
-				<SignupForm />
+				<AlertProvider>
+					<SignupForm />
+				</AlertProvider>
 			</AnonUserProvider>
 		</MemoryRouter>
 	);
@@ -49,7 +55,9 @@ test("signup works", async () => {
 	const { getByLabelText, getByText } = render(
 		<MemoryRouter>
 			<AnonUserProvider>
-				<SignupForm />
+				<AlertProvider>
+					<SignupForm />
+				</AlertProvider>
 			</AnonUserProvider>
 		</MemoryRouter>
 	);

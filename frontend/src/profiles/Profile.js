@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import UserContext from "../context_providers/UserContext";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./Profile.css";

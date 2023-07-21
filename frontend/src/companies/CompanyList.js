@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import JoblyApi from "../api/api";
 import CompanyCard from "./CompanyCard";
 import LoadingSpinner from "../common/LoadingSpinner";
-import Alert from "../common/Alert";
 import AlertContext from "../context_providers/AlertContext";
 
 const CompanyList = () => {

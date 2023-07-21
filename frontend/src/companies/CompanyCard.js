@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardTitle, CardText, CardBody, CardImg } from "reactstrap";
+import { Card, CardTitle, CardText, CardBody } from "reactstrap";
 import logo1 from "../logos/logo1.png";
 import logo2 from "../logos/logo2.png";
 import logo3 from "../logos/logo3.png";

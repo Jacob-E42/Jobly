@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
-import UserContext from "./UserContext";
-import ApplicationsContext from "./ApplicationsContext";
+import UserContext from "./context_providers/UserContext";
+import ApplicationsContext from "./context_providers/ApplicationsContext";
+import AlertContext from "./context_providers/AlertContext";
 import JoblyApi from "./api/api";
 
 const demoUser = {
@@ -64,4 +65,11 @@ const ApplicationsProvider = ({ children }) => {
 	return <ApplicationsContext.Provider value={{ applications, apply }}>{children}</ApplicationsContext.Provider>;
 };
 
-export { UserProvider, AnonUserProvider, ApplicationsProvider };
+const AlertProvider = ({ children }) => {
+	const [msg, setMsg] = useState("");
+	const [color, setColor] = useState("primary");
+
+	return <AlertContext.Provider value={{ msg, setMsg, color, setColor }}>{children}</AlertContext.Provider>;
+};
+
+export { UserProvider, AnonUserProvider, ApplicationsProvider, AlertProvider };

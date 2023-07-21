@@ -1,10 +1,9 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useCallback } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import UserContext from "../context_providers/UserContext";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
 import useForm from "../hooks/useForm";
-import AlertContext from "../context_providers/AlertContext";
 
 const LoginForm = () => {
 	// State to store form data

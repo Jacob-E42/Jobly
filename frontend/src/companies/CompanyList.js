@@ -37,7 +37,7 @@ const CompanyList = () => {
 		search();
 	}, [search]);
 
-	if (!companies) return <LoadingSpinner />;
+	if (!companies || companies.length < 1) return <LoadingSpinner />;
 
 	return (
 		<div className="CompanyList">

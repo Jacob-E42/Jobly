@@ -27,7 +27,7 @@ const JobList = () => {
 		search();
 	}, [search]);
 
-	if (!jobs) return <LoadingSpinner />;
+	if (!jobs || jobs.length < 1) return <LoadingSpinner />;
 
 	return (
 		<section className="JobList ">
